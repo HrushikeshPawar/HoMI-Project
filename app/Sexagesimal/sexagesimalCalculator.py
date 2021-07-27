@@ -6,7 +6,7 @@ sexagesimal = Blueprint('sexagesimal', __name__, static_folder='/static', templa
 
 @sexagesimal.route('/sexagesimal-calculator', methods=['POST', 'GET'])
 def Calculator():
-    
+    title = 'Sexagesimal Calculator'
     mkd_text = '''### 1. Decimal to Sexagesimal Converter\n- Input should be decimal number.
     - Allowed inputs - 1, 0.23, .23, 1.0
     - **Fraction** (optional) : 
@@ -317,9 +317,9 @@ def Calculator():
                                         ,   Mul_Input=Mul_Input, Mul_output=Mul_output, Mul_Verbose=Mul_Verbose
                                         ,   Div_Dividend=Div_Dividend, Div_Divisor=Div_Divisor, Div_Set_Precision=Div_Set_Precision
                                         ,   Div_output=Div_output, Inc_Increment=Inc_Increment, Inc_Initial=Inc_Initial
-                                        ,   Inc_Mod=Inc_Mod, Inc_Rows=Inc_Rows, Inc_output=Inc_output, scroll=scroll, mkd_text=mkd_text)
+                                        ,   Inc_Mod=Inc_Mod, Inc_Rows=Inc_Rows, Inc_output=Inc_output, scroll=scroll, mkd_text=mkd_text, title=title)
     except:
-        return render_template('sexagesimal-calculator.html')
+        return render_template('sexagesimal-calculator.html', title=title)
 
 # Helping Functions
 

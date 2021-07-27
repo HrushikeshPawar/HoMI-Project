@@ -19,12 +19,10 @@ def Decoder():
         value, Data = decoder(data, scheme)#, verbose)
         #print(value, Data, Syllables_Data)
 
-        #if verbose:
-        return render_template('aryabhatan-decoder.html', form=form, value=value, Data=Data)
-        #else:
-        #    return render_template('aryabhatan-decoder.html', form=form, value=value)
+        return render_template('aryabhatan-decoder.html', form=form, value=value, Data=Data, title='Aryabhatan Number System')
+
     else:
-        return render_template('aryabhatan-decoder.html', form=form)
+        return render_template('aryabhatan-decoder.html', form=form, title='Aryabhatan Number System')
 
 @aryabhatan.route('/aryabhatan-encoder', methods=['POST', 'GET'])
 def Encoder():
@@ -37,8 +35,8 @@ def Encoder():
         options = int(form.Options.data)
 
         text, result = encoder(data, options)
-        return render_template('aryabhatan-encoder.html', form=form, text=text, result=result)
+        return render_template('aryabhatan-encoder.html', form=form, text=text, result=result, title='Aryabhatan Number System')
 
     else:
-        return render_template('aryabhatan-encoder.html', form=form)
+        return render_template('aryabhatan-encoder.html', form=form, title='Aryabhatan Number System')
 
