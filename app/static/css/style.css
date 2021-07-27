@@ -1,0 +1,311 @@
+:root {
+    --clr-body-background   :   #EAE7DC;
+    --clr-tool-wrapper      :   #D8C3A5;
+    --clr-tool-title        :   #8E8D8A;
+    --clr-button            :   #E98074;
+    --clr-button-opacity    :   #e9807485;
+}
+
+body {
+    background-color: var(--clr-body-background);
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.title-container{
+    background: #302D33;
+    width: 100%;
+    height: 72px;
+    margin-bottom: 2rem;
+}
+
+.title-wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+}
+
+nav .logo {
+    -font-family: Jost, sans-serif;
+    font-size: 52px;
+    font-weight: 800px;
+}
+
+nav .heading{
+    margin-right: 35%;
+    color: white;
+    font-size: 40px;
+}
+
+.wrapper {
+    margin: auto;
+    max-width: 1000px;
+    max-height: 100%;
+    background: var(--clr-tool-wrapper);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    -margin: 2rem, auto;
+}
+
+.title {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0 auto;
+    align-items:center;
+    width:auto;
+    height: 50px;
+    -text-align: center;
+    background: var(--clr-tool-title);
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 20px 20px 0px 0px;
+}
+
+.title img {
+    padding: 2%;
+}
+
+.title h2 {
+    width: 80%;
+    max-width:80%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 47px;
+    text-align: center;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+    flex-wrap: nowrap;
+}
+
+.Labels{
+    font-size: 20px;
+    padding: 0.5pc;
+    -flex: 0;
+    max-width: 20%;
+    margin-left: 2%;
+}
+
+.btn{
+    width: 20%;
+    padding-left: 2pc;
+    padding-right: 2pc;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin: auto 1rem;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+    border: 2px solid var(--clr-button);
+    background-color: var(--clr-button-opacity);
+    transition-duration: 0.4s;
+}
+
+.btn:hover {
+    background-color:  var(--clr-button);
+    color: white;
+}
+
+.Convert-Number {
+    width: 1120px;
+    height: 25px;
+    padding-left: 1pc;
+    margin: auto 1rem;
+    font-size: 15px;
+    margin-right: 2%;
+}
+
+.Dec2Sexa_Fraction {
+    width: 200px;
+    height: 25px;
+    padding-left: 1pc;
+    margin: auto 1rem;
+    font-size: 15px;
+}
+
+.Convert_output {
+    width: 90%;
+    height: 25px;
+    padding-left: 1pc;
+    margin: 1rem 1rem;
+    font-size: 15px;
+    text-align: center;
+}
+
+.Dec2Sexa {
+    width: 1000;
+    margin: 0 auto;
+    display: block;
+    align-items: center;
+    -text-align: center;
+}
+
+.Sexa2Dec_Sexagesimal {
+    width: 1120px;
+    height: 25px;
+    padding-left: 1pc;
+    margin: auto 1rem;
+    font-size: 15px;
+}
+
+.Sexa2Dec_Precision{
+    width: 200px;
+    height: 25px;
+    padding-left: 1pc;
+    margin: auto 1rem;
+    font-size: 15px;
+}
+
+.Add-Sub {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Output {
+    margin-bottom: 3%;
+    width: 100%;
+    margin: 1rem 1rem;
+    padding: 2%;
+    font-size: 15px;
+    text-align: left;
+    padding-bottom: 1%;
+}
+
+.Calculate_output{
+    margin-bottom: 3%;
+    max-width: 90%;
+    max-height: 90%;
+    margin: 1rem 1rem;
+    font-size: 15px;
+    text-align: left;
+    padding: 1%;
+    background-color: white;
+    border-style: inset;
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
+
+.div-group {
+    display: inline-flex;
+    flex-direction: row;
+    margin: 1rem 0;
+    flex-wrap: nowrap;
+    width: 100%;
+    -max-width: 90%;
+    flex-wrap: nowrap;
+}
+
+.radio {
+    font-size: 20px;
+    margin-left: 15%;
+    align-items: stretch;
+}
+
+.Div-Pre{
+    max-width: 25%;
+}
+
+
+.Inc-Row-Mod {
+    max-width: 10%;
+}
+
+.Inc-Labels{
+    width: 40%;
+    margin-left: 2%;
+    
+}
+
+.table{
+    border-spacing: 0;
+    margin: 1rem;
+    background-color: #f5f5f5;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.table__row {
+    text-align: center;
+}
+
+.table__row:nth-child(even){
+    background-color: #e5e5ee;
+}
+
+.table__header {
+    text-align: left;
+}
+
+.table__cell {
+    padding: 8px;
+}
+
+.collapsible {
+    background-color: #777;
+    cursor: pointer;
+    -padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border-radius: 20px 20px 20px 20px;
+}
+ 
+.active{
+    background-color: #555;
+    border-radius: 20px 20px 0px 0px;
+    color: white;
+    
+}
+
+.Nactive{
+    background-color: #555;
+    border-radius: 20px 20px 0px 0px;
+    color: white;
+}
+
+.active::after{
+    border-radius: 20px 20px 20px 20px;
+}
+
+.collapsible:hover {
+    background-color: #555;
+    color: white;
+}
+  
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    --background-color: #f1f1f1;
+    transform: rotate(0deg);
+}
+
+.arrow-active{
+    transform: rotate(-180deg);
+    display: inline-block;
+}
+
+.Ncontent{
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    -transition: max-height 0.2s ease-out;
+    --background-color: #f1f1f1;
+    transform: rotate(0deg);
+}

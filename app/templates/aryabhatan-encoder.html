@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+        form {
+            width: 50%;
+        }
+         
+        label {
+            display: inline-block;
+            float: left;
+            clear: left;
+            width: 90px;
+            margin: 5px;
+            text-align: left;
+        }
+         
+        input[type="text"] {
+            width: 250px;
+            margin: 5px 0px;
+        }
+         
+        .gfg {
+            font-size: 40px;
+            color: green;
+            font-weight: bold;
+        }
+         
+        legend {
+            width: 70px;
+            padding: 2px;
+            margin-left: calc(50% - 35px - 8px);
+        }
+    </style>
+<div class="form-group">
+    <form action="/tools/aryabhatan-encoder" method="post">
+        {{ form.hidden_tag() }}
+        <Fieldset>
+            <legend><p></p>
+            <fieldset style = "width: 500px; margin:  0px auto;">
+            {{ form.Input.label }} {{ form.Input }} <p></p>
+            {{ form.Options.label}} {{ form.Options }} <p></p>
+            
+        </Fieldset>
+        <fieldset style = "width: 500px; margin:  0px auto;">
+        {{ form.Submit }}
+        </legend>
+    </form>
+
+    <div class="Output">
+        {% if result %}
+            <p>{{ text }}</p>
+            <table class="table table-striped">
+                <tr>
+                    <th>#</th>
+                    <th>Words</th>
+                </tr>
+                {% for i in range( result | length ) %}
+                    <tr>
+                        <td>{{i+1}}</td>
+                        <td>{{result[i]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
+

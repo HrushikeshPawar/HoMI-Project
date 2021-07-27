@@ -1,0 +1,429 @@
+{% extends 'base.html' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock css %}
+
+{% block content %}
+    <a href="#D2S"></a>
+    <a href="#S2D"></a>
+    <a href="#addition-subtraction"></a>
+    <a href="#increment"></a>
+    <a href="#multiplication"></a>
+    <a href="#division"></a>
+
+    <!--div class="title-container">
+        <div class="title-wrapper">
+            <nav>
+                <a class="logo" href="/">
+                    HoMI
+                </a>
+                <div class="heading">
+                    Sexagesimal Calculator
+                </div>
+            </nav>
+        </div>
+    </div-->
+
+    <div class="info">
+        <div class="wrapper">
+            <div class="title collapsible Info">
+                <img class="arrow" src="{{ url_for('static', filename='img/keyboard_arrow_up.svg') }}" alt="" width="24" height="24">
+                <h2>Guidelines</h2>
+            </div>
+            <div class="content">
+                {{ mkd_text | markdown}}
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="tools-container">
+        <form action="/tools/sexagesimal-calculator" method="post">
+            <div class="wrapper" id="D2S">
+                <div class="title collapsible D2S">
+                    <img class="arrow" src="{{ url_for('static', filename='img/keyboard_arrow_up.svg') }}" alt="" width="24" height="24">
+                    <h2>Decimal to Sexagesimal Converter</h2>
+                </div>
+                <div class="content">
+                    <div class="form-group">
+                        <label class="Labels" for="Dec2Sexa_Decimal">Decimal</label>
+                        <input class="Convert-Number" type="text" name="Dec2Sexa_Decimal" id="Dec2Sexa_Decimal" value="{{ Dec2Sexa_Decimal }}" placeholder="Enter Decimal Number"> <br>
+                    </div>
+                    <div class="form-group">
+                        <label class="Labels" for="Dec2Sexa_Fraction">Fraction</label>
+                        <input class="Dec2Sexa_Fraction" type="text" name="Dec2Sexa_Fraction" id="Dec2Sexa_Fraction" value="{{ Dec2Sexa_Fraction }}" placeholder="Decimal Places to consider">
+                        <button class="btn" name="btn-Dec2Sexa" value="Convert">Convert</button>
+                        <button class="btn" name="btn-Dec2Sexa" value="Reset">Reset</button>
+                    </div>
+                    <div class="Dec2Sexa">
+                        <input class="Convert_output" name="Dec2Sexa_output" type="text" value="{{ Dec2Sexa_output }}" readonly placeholder="Sexagesimal Number">
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="wrapper">
+                <div class="title collapsible S2D" id="S2D">
+                    <img class="arrow" src="{{ url_for('static', filename='img/keyboard_arrow_up.svg') }}" alt="" width="24" height="24">
+                    <h2>Sexagesimal to Decimal Converter</h2>
+                </div>
+                <div class="content">
+                    <div class="form-group">
+                        <label class="Labels" for="Sexa2Dec_Sexagesimal">Sexagesimal</label>
+                        <input class="Convert-Number" type="text" name="Sexa2Dec_Sexagesimal" id="Sexa2Dec_Sexagesimal" value="{{ Sexa2Dec_Sexagesimal }}" placeholder="Enter Sexagesimal Number"> <br>
+                    </div>
+                    <div class="form-group">
+                        <label class="Labels" for="Sexa2Dec_Precision">Precision</label>
+                        <input class="Sexa2Dec_Precision" type="text" name="Sexa2Dec_Precision" id="Sexa2Dec_Precision" value="{{ Sexa2Dec_Precision }}" placeholder="Decimal Places to print">
+                        <button class="btn" name="btn-Sexa2Dec" value="Convert">Convert</button>
+                        <button class="btn" name="btn-Sexa2Dec" value="Reset">Reset</button>
+                    </div>
+                    <div class="Dec2Sexa">
+                        <input class="Convert_output" name="Sexa2Dec_output" type="text" value="{{ Sexa2Dec_output }}" readonly placeholder="Decimal Number">
+                    </div>
+                </div>
+
+            </div>
+
+            <br><br>
+
+            <div class="wrapper" id="addition-subtraction">
+                <div class="title collapsible AS">
+                    <img class="arrow" src="{{ url_for('static', filename='img/keyboard_arrow_up.svg') }}" alt="" width="24" height="24">
+                    <h2>Addition and Subtraction</h2>
+                </div>
+
+                <div class="content">
+                    <div class="form-group">
+                        <label class="Labels" for="AddSub_Input">Input</label>
+                        <input class="Convert-Number" type="text" name="AddSub_Input" id="AddSub_Input" value="{{ AddSub_Input }}"> <br>
+                    </div>
+                    <div class="form-group Add-Sub">
+                        <button class="btn" name="btn-AddSub" value="Calculate">Calculate</button>
+                        <button class="btn" name="btn-AddSub" value="Reset">Reset</button>
+                    </div>
+                    <div class="Output">
+                        <!--input class="Calculate_output" name="AddSub_output" type="text" value="{{ AddSub_output }}"  readonly placeholder="Final Result"-->
+                        <div class="Calculate_output" name="AddSub_output" placeholder="Final Result">{{ AddSub_output }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="wrapper">
+                <div class="title collapsible M" id="multiplication">
+                    <img class="arrow" src="{{ url_for('static', filename='img/keyboard_arrow_up.svg') }}" alt="" width="24" height="24">
+                    <h2>Multiplication</h2>
+                </div>
+
+                <div class="content">
+                    <div class="form-group">
+                        <label class="Labels" for="Mul_Input">Input</label>
+                        <input class="Convert-Number" type="text" name="Mul_Input" id="Mul_Input" value="{{ Mul_Input }}" placeholder="Enter Sexagesimal Numbers"> <br>
+                    </div>
+                    <div class="form-group Add-Sub">
+                        <input type="checkbox" name="Mul_Verbose"> Verbose<br>
+                        <button class="btn" name="btn-Mul" value="Calculate">Calculate</button>
+                        <button class="btn" name="btn-Mul" value="Reset">Reset</button>
+                    </div>
+                    <div class="Output">
+                        <!--input class="Calculate_output" name="AddSub_output" type="text" value="{{ AddSub_output }}"  readonly placeholder="Final Result"-->
+                        <p class="Calculate_output" name="Mul_output" placeholder="Final Result">{{ Mul_output }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="wrapper">
+                <div class="title collapsible D" id="division">
+                    <img class="arrow" src="{{ url_for('static', filename='img/keyboard_arrow_up.svg') }}" alt="" width="24" height="24">
+                    <h2>Division</h2>
+                </div>
+                <div class="content">
+                    <div class="form-group">
+                        <label class="Labels" for="Div_Dividend">Dividend</label>
+                        <input class="Convert-Number" type="text" name="Div_Dividend" value="{{ Div_Dividend }}">
+                        <label class="Labels" for="Div_Divisor">Divisor</label>
+                        <input class="Convert-Number" type="text" name="Div_Divisor" value="{{ Div_Divisor }}">
+                    </div>
+                    <div class="div-group">
+                        <label class="Labels" for="Div_Set_Precision">Precision</label>
+                        <input class="Convert-Number Div-Pre" type="text" name="Div_Set_Precision" value="{{ Div_Set_Precision if Div_Set_Precision else 'Set to Default : 20'}}" id="Div_Set_Precision" readonly>
+                        <div class="radio">
+                            <input type="radio" onclick="handleRadio(this)" name="Div_Radio" id="Div_Normal" value="Div_Normal" checked> Normal
+                            <input type="radio" onclick="handleRadio(this)" name="Div_Radio" id='Div_Precision' value="Div_Precision"> Precision
+                            <input type="radio" onclick="handleRadio(this)" name="Div_Radio" id='Div_Verbose' value="Div_Verbose"> Verbose
+                        </div>
+                    </div>
+                    <div class="form-group Add-Sub">
+                        <button class="btn" name="btn-Div" value="Calculate">Calculate</button>
+                        <button class="btn" name="btn-Div" value="Reset">Reset</button>
+                    </div>
+                    <div class="Output">
+                        <!--input class="Calculate_output" name="AddSub_output" type="text" value="{{ AddSub_output }}"  readonly placeholder="Final Result"-->
+                        <p class="Calculate_output Div-Output" name="Div_output" placeholder="Final Result">{{ Div_output }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="wrapper">
+                <div class="title collapsible I" id="increment">
+                    <img class="arrow" src="{{ url_for('static', filename='img/keyboard_arrow_up.svg') }}" alt="" width="24" height="24">
+                    <h2>Increment Table Generator</h2>
+                </div>
+                <div class="content">
+                    <div class="form-group">
+                        <label class="Labels Inc-Labels" for="Inc_Initial">Initial Value</label>
+                        <input class="Convert-Number" type="text" name="Inc_Initial" value="{{ Inc_Initial }}">
+                        <label class="Labels Inc-Labels" for="Inc_Rows">Rows</label>
+                        <input class="Convert-Number Inc-Row-Mod" type="text" name="Inc_Rows" value="{{ Inc_Rows }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="Labels Inc-Labels" for="Inc_Increment">Increment Value</label>
+                        <input class="Convert-Number" type="text" name="Inc_Increment" value="{{ Inc_Increment }}">
+                        <label class="Labels Inc-Labels" for="Inc_Mod">Output Mod</label>
+                        <input class="Convert-Number Inc-Row-Mod" type="text" name="Inc_Mod" value="{{ Inc_Mod }}">
+                    </div>
+                    <div class="form-group Add-Sub">
+                        <button class="btn" name="btn-Inc" value="Calculate">Calculate</button>
+                        <button class="btn" name="btn-Inc" value="Reset">Reset</button>
+                    </div>
+                    <div class="Output">
+                        {% if Inc_output != 'Invalid Input' and Inc_output %}
+                        <table class="table">
+                            <tr class="table__header">
+                                <th class="table__cell">Increment Table</th>
+                            </tr>
+                            {% for row in Inc_output %}
+                            <tr class="table__row">
+                                <td class="table__cell"> {{ row }}</td>
+                            </tr>
+                            {% endfor %}
+
+                        </table>
+                        {% elif Inc_output == 'Invalid Input' and Inc_output %}
+                        <h3>{{ Inc_output }} </h3>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br><br><br>
+    <div class="title-container">
+        <div class="title-wrapper">
+            <nav>
+
+            </nav>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script>
+        document.location.hash = '#' + '{{ scroll }}';
+        console.log('{{scroll}}')
+
+        function handleRadio(selected_Radio) {
+            if (selected_Radio.value == 'Div_Normal') {
+                document.getElementById('Div_Set_Precision').readOnly = true
+                document.getElementById('Div_Set_Precision').value = 'Set to Default : 20'
+            } else {
+                document.getElementById('Div_Set_Precision').readOnly = false
+                document.getElementById('Div_Set_Precision').value = ''
+            }
+        }
+
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        console.log(sessionStorage.D2S)
+
+        if (sessionStorage.D2S === 'true') {
+            cls = document.getElementsByClassName("D2S")
+            cls[0].classList.toggle("active");
+            var arrow = cls[0].firstChild.nextElementSibling
+            arrow.classList.toggle('arrow-active')
+            var content = cls[0].nextElementSibling;
+            content.classList.toggle("content");
+            content.classList.toggle("Ncontent");
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        if (sessionStorage.S2D === 'true') {
+            cls = document.getElementsByClassName("S2D")
+            cls[0].classList.toggle("active");
+            var arrow = cls[0].firstChild.nextElementSibling
+            arrow.classList.toggle('arrow-active')
+            var content = cls[0].nextElementSibling;
+            content.classList.toggle("content");
+            content.classList.toggle("Ncontent");
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        if (sessionStorage.AS === 'true') {
+            cls = document.getElementsByClassName("AS")
+            cls[0].classList.toggle("active");
+            var arrow = cls[0].firstChild.nextElementSibling
+            arrow.classList.toggle('arrow-active')
+            var content = cls[0].nextElementSibling;
+            content.classList.toggle("content");
+            content.classList.toggle("Ncontent");
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        if (sessionStorage.M === 'true') {
+            cls = document.getElementsByClassName("M")
+            cls[0].classList.toggle("active");
+            var arrow = cls[0].firstChild.nextElementSibling
+            arrow.classList.toggle('arrow-active')
+            var content = cls[0].nextElementSibling;
+            content.classList.toggle("content");
+            content.classList.toggle("Ncontent");
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        if (sessionStorage.D === 'true') {
+            cls = document.getElementsByClassName("D")
+            cls[0].classList.toggle("active");
+            var arrow = cls[0].firstChild.nextElementSibling
+            arrow.classList.toggle('arrow-active')
+            var content = cls[0].nextElementSibling;
+            content.classList.toggle("content");
+            content.classList.toggle("Ncontent");
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        if (sessionStorage.I === 'true') {
+            cls = document.getElementsByClassName("I")
+            cls[0].classList.toggle("active");
+            var arrow = cls[0].firstChild.nextElementSibling
+            arrow.classList.toggle('arrow-active')
+            var content = cls[0].nextElementSibling;
+            content.classList.toggle("content");
+            content.classList.toggle("Ncontent");
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        if (sessionStorage.Info === 'true') {
+            cls = document.getElementsByClassName("Info")
+            cls[0].classList.toggle("active");
+            var arrow = cls[0].firstChild.nextElementSibling
+            arrow.classList.toggle('arrow-active')
+            var content = cls[0].nextElementSibling;
+            content.classList.toggle("content");
+            content.classList.toggle("Ncontent");
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var arrow = this.firstChild.nextElementSibling
+                arrow.classList.toggle('arrow-active')
+
+                var content = this.nextElementSibling;
+                if (content.classList.value === 'Ncontent') {
+                    content.classList.toggle("content");
+                    content.classList.toggle("Ncontent");
+                }
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+
+                if (this.classList[2] === "D2S") {
+                    if (this.classList.length === 4) {
+                        sessionStorage.D2S = true
+                    } else {
+                        sessionStorage.D2S = false
+                    }
+                }
+
+                if (this.classList[2] === "S2D") {
+                    if (this.classList.length === 4) {
+                        sessionStorage.S2D = true
+                    } else {
+                        sessionStorage.S2D = false
+                    }
+                }
+
+                if (this.classList[2] === "AS") {
+                    if (this.classList.length === 4) {
+                        sessionStorage.AS = true
+                    } else {
+                        sessionStorage.AS = false
+                    }
+                }
+
+                if (this.classList[2] === "M") {
+                    if (this.classList.length === 4) {
+                        sessionStorage.M = true
+                    } else {
+                        sessionStorage.M = false
+                    }
+                }
+
+                if (this.classList[2] === "D") {
+                    if (this.classList.length === 4) {
+                        sessionStorage.D = true
+                    } else {
+                        sessionStorage.D = false
+                    }
+                }
+
+                if (this.classList[2] === "I") {
+                    if (this.classList.length === 4) {
+                        sessionStorage.I = true
+                    } else {
+                        sessionStorage.I = false
+                    }
+                }
+
+                if (this.classList[2] === "Info") {
+                    if (this.classList.length === 4) {
+                        sessionStorage.Info = true
+                    } else {
+                        sessionStorage.Info = false
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock scripts %}
