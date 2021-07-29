@@ -6,7 +6,7 @@ sexagesimal = Blueprint('sexagesimal', __name__, static_folder='/static', templa
 
 @sexagesimal.route('/sexagesimal-calculator', methods=['POST', 'GET'])
 def Calculator():
-    title = 'Sexagesimal Calculator'
+    
     mkd_text = '''### 1. Decimal to Sexagesimal Converter\n- Input should be decimal number.
     - Allowed inputs - 1, 0.23, .23, 1.0
     - **Fraction** (optional) : 
@@ -317,9 +317,10 @@ def Calculator():
                                         ,   Mul_Input=Mul_Input, Mul_output=Mul_output, Mul_Verbose=Mul_Verbose
                                         ,   Div_Dividend=Div_Dividend, Div_Divisor=Div_Divisor, Div_Set_Precision=Div_Set_Precision
                                         ,   Div_output=Div_output, Inc_Increment=Inc_Increment, Inc_Initial=Inc_Initial
-                                        ,   Inc_Mod=Inc_Mod, Inc_Rows=Inc_Rows, Inc_output=Inc_output, scroll=scroll, mkd_text=mkd_text, title=title)
+                                        ,   Inc_Mod=Inc_Mod, Inc_Rows=Inc_Rows, Inc_output=Inc_output, scroll=scroll, mkd_text=mkd_text
+                                        ,   title='Sexagesimal')
     except:
-        return render_template('sexagesimal-calculator.html', title=title)
+        return render_template('sexagesimal-calculator.html',   title='Sexagesimal')
 
 # Helping Functions
 
@@ -546,10 +547,9 @@ def DiviAdvance(A, B, Precision=20, Verbose=False):
     
     # Print the above details
     if Verbose:
-        #print(f"\nA\t=\t{A}")
-        #print(f"B\t=\t{B}")
-        Details += f"\nA\t=\t{A}"
-        Details += f"\nB\t=\t{B}"
+        Details = f"\n\n\n\n**Inputs:**"
+        Details += f"\n\n\tA\t=\t{A}"
+        Details += f"\n\tB\t=\t{B}"
         
     # Step1 : Get the Rational Form of B
     try:
@@ -559,13 +559,9 @@ def DiviAdvance(A, B, Precision=20, Verbose=False):
         B_Denom = 1
 
     if Verbose:
-        #print(f"\n\n\nStep 1: Get the rational form of B")
-        #print(f"\n\tB\t=\t {B_Num}")
-        #print(f"\t \t \t{'-' * (len(B_Num)+2)}")
-        #print(f"\t \t \t {B_Denom}")
-        Details += f"\n\n\n\nStep 1: Get the rational form of B"
+        Details += f"\n\n\n\n**Step 1:** Get the rational form of B"
         Details += f"\n\n\tB\t=\t {B_Num}"
-        Details += f"\n\t \t \t{'_' * (len(B_Num)+2)}"
+        Details += f"\n\t \t \t{'-' * (len(B_Num)+2)}"
         Details += f"\n\t \t \t {B_Denom}"
         
     
@@ -574,15 +570,12 @@ def DiviAdvance(A, B, Precision=20, Verbose=False):
     B_Num_R1 = Sexagesimal(B_Num_R)
 
     if Verbose:
-        #print(f"\n\n\nStep 2: Get the reciprocal of the numberator of B (Why? Because, dividing by B is same as multiplying by reciprocal of B)")
-        Details += f"\n\n\n\nStep 2: Get the reciprocal of the numberator of B (Why? Because, dividing by B is same as multiplying by reciprocal of B)"
+        
+        Details += f"\n\n\n\n**Step 2:** Get the reciprocal of the numberator of B (Why? Because, dividing by B is same as multiplying by reciprocal of B)"
         if flag:
-            #print(f"\n\tThe numerator of B is not a regular number (i.e has a prime factor other than 2, 3 or 5).")
-            #print(f"\tHence, the reciprocal of numberator is non-terminating but recurring! (The recurring term is enclosed on brackets)")
             Details += f"\n\n\tThe numerator of B is not a regular number (i.e has a prime factor other than 2, 3 or 5)."
             Details += f"\n\tHence, the reciprocal of numberator is non-terminating but recurring! (The recurring term is enclosed on brackets)"
         else:
-            #print(f"\n\tThe numerator of B is a regular number. Hence, the reciprocal has an exact Sexagesimal Representation")
             Details += f"\n\n\tThe numerator of B is a regular number. Hence, the reciprocal has an exact Sexagesimal Representation"
         
         if len(Recur) == 0:
@@ -604,9 +597,7 @@ def DiviAdvance(A, B, Precision=20, Verbose=False):
     B_Denom = Sexagesimal(B_Denom)
     B_R = B_Num_R1 * B_Denom        
     if Verbose:
-        #print(f"\n\n\nStep 3: Calculate the Reciprocal of B (Denominator x Reciprocal of Numerator)")
-        #print(f"\n\tReciprocal of B (B')\t=\t{B_R}")
-        Details += f"\n\n\n\nStep 3: Calculate the Reciprocal of B (Denominator x Reciprocal of Numerator)"
+        Details += f"\n\n\n\n**Step 3:** Calculate the Reciprocal of B (Denominator x Reciprocal of Numerator)"
         print(B_R)
         X = Sexagesimal.RoundOff(B_R, Precision)
         Details += f"\n\n\tReciprocal of B (B')\t=\t{X}"       
@@ -624,9 +615,7 @@ def DiviAdvance(A, B, Precision=20, Verbose=False):
             Div = Sexagesimal.RoundOff(Div, Precision)            
 
     if Verbose:
-        #print(f"\n\n\nStpe 4: Do the actual Division (A/B = A * B')")
-        #print(f"\n\tA/B\t=\t{Div}")
-        Details += f"\n\n\n\nStpe 4: Do the actual Division (A/B = A * B')"
+        Details += f"\n\n\n\n**Stpe 4:** Do the actual Division (A/B = A * B')"
         Details += f"\n\n\tA/B\t=\t{Div}"
 
         if flag:
@@ -648,11 +637,8 @@ def DiviAdvance(A, B, Precision=20, Verbose=False):
                 else:
                     cnt += 1
 
-            #print(f"\n\nThe above answer of division (A/B) when again multiplied with B gives A correctly upto {cnt} Sexagesimal places in the fraction part\n")
-            #print(f"\n\tA'\t=\tA/B * B\t=\t{A_New}\n\n")
             Details += f"\n\n\nThe above answer of division (A/B) when again multiplied with B gives A correctly upto {cnt} Sexagesimal places in the fraction part\n"
-            Details += f"\n\n\tA'\t=\tA/B * B\t=\t{A_New}\n\n"
-                            
+            Details += f"\n\n\tA'\t=\tA/B * B\t=\t{A_New}\n\n"      
         
     if Verbose:
         return Details

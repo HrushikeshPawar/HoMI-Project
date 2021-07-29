@@ -1,4 +1,3 @@
-import os
 from flask import render_template, Blueprint, g
 from .forms import KatapayadiDecoder, KatapayadiEncoder
 from .katapayadi_decoder import decoder
@@ -6,8 +5,7 @@ from .katapayadi_encoder import Katapayadi_Encoder
 import sqlite3
 
 katapayadi = Blueprint('katapayadi', __name__, static_folder='static', template_folder='templates')
-PATH = os.getcwd()
-DATABASE = os.path.join(PATH, 'app', 'Demo_Database.db')
+DATABASE = 'Demo_Database.db'
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -30,11 +28,11 @@ def Decoder():
         Data, Syllables_Data = Verbose_Data
 
         if verbose:
-            return render_template('katapayadi-decoder.html', form=form, normal=normal_value, reverse=reverse_value, Data=Data, Syllables_Data=Syllables_Data, title='Katapayadi Number System')
+            return render_template('katapayadi-decoder.html', form=form, normal=normal_value, reverse=reverse_value, Data=Data, Syllables_Data=Syllables_Data, title='Katapayadi', scroll='decoder')
         else:
-            return render_template('katapayadi-decoder.html', form=form, normal=normal_value, reverse=reverse_value, title='Katapayadi Number System')
+            return render_template('katapayadi-decoder.html', form=form, normal=normal_value, reverse=reverse_value, title='Katapayadi', scroll='decoder')
     else:
-        return render_template('katapayadi-decoder.html', form=form, title='Katapayadi Number System')
+        return render_template('katapayadi-decoder.html', form=form, title='Katapayadi', scroll='decoder')
 
 @katapayadi.route('/katapayadi-encoder', methods=['POST', 'GET'])
 def Encoder():
@@ -53,7 +51,7 @@ def Encoder():
         return render_template('katapayadi-encoder.html', form=form, N_Words_lable=N_Words_lable, N_Words=N_Words, R_Words=R_Words
                                 , R_Words_lable=R_Words_lable, N_Sentences_Dict_Keys=N_Sentences_Dict_Keys
                                 , N_Sentences_Dict_Values=N_Sentences_Dict_Values, R_Sentences_Dict_Keys=R_Sentences_Dict_Keys
-                                , R_Sentences_Dict_Values=R_Sentences_Dict_Values, title='Katapayadi Number System')
+                                , R_Sentences_Dict_Values=R_Sentences_Dict_Values, title='Katapayadi', scroll='encoder')
 
     else:
-        return render_template('katapayadi-encoder.html', form=form, title='Katapayadi Number System')
+        return render_template('katapayadi-encoder.html', form=form, title='Katapayadi', scroll='encoder')

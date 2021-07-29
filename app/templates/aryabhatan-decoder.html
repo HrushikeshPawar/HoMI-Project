@@ -1,60 +1,29 @@
-{% extends 'base.html' %}
-{% block content %}
-<style>
-        form {
-            width: 50%;
-        }
-         
-        label {
-            display: inline-block;
-            float: left;
-            clear: left;
-            width: 90px;
-            margin: 5px;
-            text-align: left;
-        }
-         
-        input[type="text"] {
-            width: 250px;
-            margin: 5px 0px;
-        }
-         
-        .gfg {
-            font-size: 40px;
-            color: green;
-            font-weight: bold;
-        }
-         
-        legend {
-            width: 70px;
-            padding: 2px;
-            margin-left: calc(50% - 35px - 8px);
-        }
-    </style>
-<div class="form-group">
-    <form action="/tools/aryabhatan-decoder" method="post">
-        {{ form.hidden_tag() }}
-        <Fieldset>
-            <legend><p></p>
-                <fieldset style = "width: 500px; margin:  0px auto;">
-            {{ form.Input.label }} {{ form.Input }} <p></p>
-            {{ form.Encoding.label}} {{ form.Encoding }} <p></p>
-            <!--{{ form.Verbose.label }} {{ form.Verbose }}-->
-        </Fieldset>
-        <fieldset style = "width: 500px; margin:  0px auto;">
-        {{ form.Submit }}
-        </legend>
-        
-        <div class="output">
-            {% if value %}
-                {% for row in Data %}
-                    <p><b>{{ row }}</b> {{ Data[row] }}</p> 
-                {% endfor %}
-                <p><b> Aryabhata Number : </b> {{ value }}</p>
-            {% endif %}
+{% extends 'aryabhatan.html' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock css %}
 
+{% block content3 %}
+<div style="background-color:white;">
+    <h3  id='decoder'>Āryabhaṭīya Decoder</h3>
+    <div class="form-container">
+        <form action="/tools/aryabhatan-decoder" method="post">
+            {{ form.hidden_tag() }}
+        
+            {{ form.Input.label }} {{ form.Input }} <br>
+            {{ form.Encoding.label}} {{ form.Encoding }} <br><br>
             
-        </div>
-    </form>
+            {{ form.Submit }} <br><br>
+            
+            <div class="output">
+                {% if value %}
+                    {% for row in Data %}
+                        <p><b>{{ row }}</b> {{ Data[row] }}</p> 
+                    {% endfor %}
+                    <p><b> Aryabhata Number : </b> {{ value }}</p>
+                {% endif %}
+            </div>
+        </form>
+    </div>
 </div>
-{% endblock content %}
+{% endblock content3 %}

@@ -1,9 +1,10 @@
 from flask import Flask, render_template, g
 from flaskext.markdown import Markdown
-from .Sexagesimal.sexagesimalCalculator import sexagesimal
-from .Katapayadi.katapayadi import katapayadi
-from .Aryabhatan.aryabhatan_system import aryabhatan
+from Sexagesimal.sexagesimalCalculator import sexagesimal
+from Katapayadi.katapayadi import katapayadi
+from Aryabhatan.aryabhatan_system import aryabhatan
 import sqlite3
+
 
 app = Flask(__name__, static_url_path='/static')
 app.register_blueprint(sexagesimal, url_prefix='/tools')
@@ -12,7 +13,8 @@ app.register_blueprint(katapayadi, url_prefix='/tools')
 
 app.config['SECRET_KEY'] = 'a54d04a4ce38193acc5407a681df2400'
 
-Markdown(app)
+Markdown(app, tables=True)
+
 DATABASE = 'Demo_Database.db'
 
 def get_db():
@@ -35,17 +37,19 @@ def main():
 
 @app.route('/katapayadi')
 def katapayadi_system():
-    return render_template('katapayadi.html')
+    return render_template('katapayadi.html', title='Katapayadi')
 
 @app.route('/sexagesimal')
 def sexagesimal_system():
-    return render_template('sexagesimal.html')
+    return render_template('sexagesimal.html', title='Sexagesimal')
 
 @app.route('/aryabhatan')
 def aryabhatan_system():
-    return render_template('aryabhatan.html')
+    return render_template('aryabhatan.html', title='Aryabhatan')
 
-
+@app.route('/bhutasankhya')
+def bhutasankhya_system():
+    return render_template('bhutasankhya.html', title='Bhutasankhya')
 
 
 if __name__ == '__main__':

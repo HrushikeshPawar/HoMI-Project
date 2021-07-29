@@ -925,9 +925,6 @@ class Sexagesimal:
             A_S = A.S
             B_S = B.S
         
-        Details = "\n\n\n"
-        
-
         # Break down both numbers in their Integral and Fractional Part
         A_D, A_F = A_S.split(";")
         A_D = A_D.split(",")
@@ -937,16 +934,11 @@ class Sexagesimal:
         B_F = B_F.split(",")
 
         # Print the above details
-        Details += f"\n\nA\t=\t{A}"
-        Details += f"\nB\t=\t{B}"
+        Details = f"\n\n\n\n**Inputs:**"
+        Details += f"\n\n\tA\t=\t{A}"
+        Details += f"\n\tB\t=\t{B}"
         
-        # Print the Step 1
-        #print(f"\n\n\nStep 1: Break the Sexagesimal Numbers in their Intergral and Fractional Parts respectively.")
-        #print(f"\n\tIntegral part of A\t=\t{A_D}")
-        #print(f"\tFractional part of A\t=\t{A_F}")
-        #print(f"\n\tIntegral part of B\t=\t{B_D}")
-        #print(f"\tFractional part of B\t=\t{B_F}")
-        Details += f"\n\n\n\nStep 1: Break the Sexagesimal Numbers in their Intergral and Fractional Parts respectively."
+        Details += f"\n\n\n\n**Step 1:** Break the Sexagesimal Numbers in their Intergral and Fractional Parts respectively."
         Details += f"\n\n\tIntegral part of A\t\t=\t{A_D}"
         Details += f"\n\tFractional part of A\t=\t{A_F}"
         Details += f"\n\n\tIntegral part of B\t\t=\t{B_D}"
@@ -957,9 +949,7 @@ class Sexagesimal:
         Multiplication = []
 
         # Multiply the Fractional part of B with A:
-        # Start printing step 2
-        #print(f"\n\n\nStep 2: Multiply the fractional part of B to A, one Sexagesimal place at a time.\n")
-        Details += f"\n\n\n\nStep 2: Multiply the fractional part of B to A, one Sexagesimal place at a time.\n"
+        Details += f"\n\n\n\n**Step 2:** Multiply the fractional part of B to A, one Sexagesimal place at a time.\n"
         for f in B_F[::-1]:
             carry = 0
             f = int(f)
@@ -1011,9 +1001,7 @@ class Sexagesimal:
 
 
         # Multiply the Integral part of B with A:
-        # Start printing step 3
-        #print(f"\n\n\nStep 3: Multiply the integral part of B to A, one Sexagesimal place at a time.\n")
-        Details += f"\n\n\n\nStep 3: Multiply the integral part of B to A, one Sexagesimal place at a time.\n"
+        Details += f"\n\n\n\n**Step 3:** Multiply the integral part of B to A, one Sexagesimal place at a time.\n"
         for d in B_D[::-1]:
             d = int(d)
             carry = 0
@@ -1064,8 +1052,7 @@ class Sexagesimal:
             Details += f"\n\n\t{d}  *  {A}\t=\t{Multiplication[i]}\n"
         
         # Step 4: Make all the rows of equal length
-        #print(f"\n\n\nStep 4: Make all the rows of equal lenght to get the following matrix of all the intermediate results\n")
-        Details += f"\n\n\n\nStep 4: Make all the rows of equal lenght to get the following matrix of all the intermediate results\n"
+        Details += f"\n\n\n\n**Step 4:** Make all the rows of equal lenght to get the following matrix of all the intermediate results\n"
         max_lenght = max([len(x) for x in Multiplication])
         for i in range(len(Multiplication)):
 
@@ -1082,8 +1069,7 @@ class Sexagesimal:
             Details += f"\n\t | {Row} |"
         
         # Step 5: Add all the rows, column by column, from right to left
-        #print(f"\n\n\nStep 5: Add all the rows, column by column, from right to left. Following is the final result of addition")
-        Details += f"\n\n\n\nStep 5: Add all the rows, column by column, from right to left. Following is the final result of addition\n"
+        Details += f"\n\n\n\n**Step 5:** Add all the rows, column by column, from right to left. Following is the final result of addition\n"
         Result = []
         carry = 0
         for i in list(range(len(Multiplication[0])))[::-1]:
@@ -1115,32 +1101,27 @@ class Sexagesimal:
             for elem in row:
                 Row.append(f"{elem:0>2}")
             Row = " | ".join(Row)
-            #print(f"\t | {Row} | ")
             Details += f"\n\t | {Row} | "
-        
-        #print(f"\t{'-'*(len(Row)+6)}")
-        Details += f"\n\t{'_'*(len(Row)+2)}"
+
+        Details += f"\n\t{'='*(len(Row)+6)}"
         Row = []
         for elem in Result:
             Row.append(f"{elem:0>2}")
         Row = " | ".join(Row)
-        #print(f"\t | {Row} | ")
         Details += f"\n\t | {Row} | "
 
         # Step 6: Divide the result into the Integral and the Fractional Part (Using the length of A_F and B_F)
         #print(f"\n\n\nStep 6: Divide the result into the Integral and the Fractional Part (Using the length of A_F and B_F)\n")
-        Details += f"\n\n\n\nStep 6: Divide the result into the Integral and the Fractional Part (Using the length of A_F and B_F)\n"
+        Details += f"\n\n\n\n**Step 6:** Divide the result into the Integral and the Fractional Part (Using the length of A_F and B_F)\n"
         
         k = len(A_F) + len(B_F)
         D, F = Result[:-k], Result[-k:]
         D = ",".join(D)
         F = ",".join(F)
-        #print(f"\tResult  =  {D};{F}")
-        Details += f"\n\tResult  =  {D};{F}"
+        Details += f"\n     Result  =  {D};{F}"
 
         # Step 7: Strip the trailing or preceeding zeros from the result, if any
-        #print(f"\n\n\nStep 7: Strip the trailing or preceeding zeros from the result, if any")
-        Details  += f"\n\n\n\nStep 7: Strip the trailing or preceeding zeros from the result, if any"
+        Details  += f"\n\n\n\n**Step 7:** Strip the trailing or preceeding zeros from the result, if any"
         while F[-3:] == ",00":
             F = F[:-3]
         
@@ -1148,11 +1129,11 @@ class Sexagesimal:
             D = D[3:]
 
         #print(f"\n\tResult  =  {D};{F}")
-        Details += f"\n\n\tResult  =  {D};{F}"
+        Details += f"\n\n       Result  =  {D};{F}"
 
         # Step 8: Give proper sign to the Result
         #print(f"\n\n\nStep 8: Give proper sign to the Result")
-        Details += f"\n\n\n\nStep 8: Give proper sign to the Result"
+        Details += f"\n\n\n\n**Step 8:** Give proper sign to the Result"
         if (A.negative == True and B.negative == False) or (A.negative == False and B.negative == True):
             #print(f"\n\t{A}  *  {B}  =  -{D};{F}\n\n")
             Details += f"\n\n\t{A}  *  {B}  =  -{D};{F}\n\n"
@@ -1177,8 +1158,10 @@ class Sexagesimal:
         
         # Print the above details
         if Verbose:
-            print(f"\nA\t=\t{A}")
-            print(f"B\t=\t{B}")
+            Details = f"\n\n\n\n**Inputs:**"
+            Details += f"\n\n\tA\t=\t{A}"
+            Details += f"\n\tB\t=\t{B}"
+            
             
         # Step1 : Get the Rational Form of B
         try:
