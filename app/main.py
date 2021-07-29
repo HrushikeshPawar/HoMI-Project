@@ -1,8 +1,8 @@
 from flask import Flask, render_template, g
 from flaskext.markdown import Markdown
-from Sexagesimal.sexagesimalCalculator import sexagesimal
-from Katapayadi.katapayadi import katapayadi
-from Aryabhatan.aryabhatan_system import aryabhatan
+from .Sexagesimal.sexagesimalCalculator import sexagesimal
+from .Katapayadi.katapayadi import katapayadi
+from .Aryabhatan.aryabhatan_system import aryabhatan
 import sqlite3
 
 

@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, Blueprint
 from .Sexagesimal import Sexagesimal
 
 sexagesimal = Blueprint('sexagesimal', __name__, static_folder='/static', template_folder='templates')
-#Markdown(sexagesimal)
 
 @sexagesimal.route('/sexagesimal-calculator', methods=['POST', 'GET'])
 def Calculator():
