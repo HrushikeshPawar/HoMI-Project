@@ -6,7 +6,6 @@ from .Aryabhatan.aryabhatan_system import aryabhatan
 import sqlite3
 import os
 
-
 app = Flask(__name__, static_url_path='/static')
 app.register_blueprint(sexagesimal, url_prefix='/tools')
 app.register_blueprint(aryabhatan, url_prefix='/tools')

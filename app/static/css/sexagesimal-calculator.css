@@ -399,23 +399,29 @@ body {
 
 
 .table{
+    min-width: 20% !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 90% !important;
     border-spacing: 0;
     margin: 1rem;
     background-color: #f5f5f5;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .table__row {
-    text-align: center;
+    text-align: center !important;
 }
 
 .table__row:nth-child(even){
-    background-color: #e5e5ee;
+    background-color: #e5e5ee !important;
 }
 
 .table__header {
-    text-align: left;
+    text-align: left !important;
 }
 
 .table__cell {
-    padding: 8px;
+    padding: 8px !important;
 }

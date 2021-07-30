@@ -194,6 +194,7 @@
                     </div>
                 </div>
                 <div class="my-output">
+                    <br>
                     {% if Inc_output != 'Invalid Input' and Inc_output %}
                         <table class="table">
                         <tr class="table__header">
@@ -207,8 +208,9 @@
 
                         </table>
                     {% elif Inc_output == 'Invalid Input' and Inc_output %}
-                        <h3>{{ Inc_output }} </h3>
+                        <h4 style='text-align: center;' >{{ Inc_output }} </h4>
                     {% endif %}
+                    <br><br>
                 </div>
             </div> 
         </div>
