@@ -1,5 +1,5 @@
 :root {
-    --clr-body-background   :   #EAE7DC;
+    --clr-body-background   :   white;
     --clr-tool-wrapper      :   #D8C3A5;
     --clr-tool-title        :   #8E8D8A;
     --clr-button            :   #E98074;
@@ -399,29 +399,23 @@ body {
 
 
 .table{
-    min-width: 20% !important;
-    width: auto !important;
-    height: auto !important;
-    max-width: 90% !important;
     border-spacing: 0;
     margin: 1rem;
     background-color: #f5f5f5;
-    margin-left: auto !important;
-    margin-right: auto !important;
 }
 
 .table__row {
-    text-align: center !important;
+    text-align: center;
 }
 
 .table__row:nth-child(even){
-    background-color: #e5e5ee !important;
+    background-color: #e5e5ee;
 }
 
 .table__header {
-    text-align: left !important;
+    text-align: left;
 }
 
 .table__cell {
-    padding: 8px !important;
+    padding: 8px;
 }

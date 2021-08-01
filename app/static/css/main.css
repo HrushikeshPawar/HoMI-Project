@@ -87,3 +87,7 @@ b {
     width: 100% !important;
     padding-right: 1rem !important;
 }
+
+.no-border {
+    border: none !important;
+}
