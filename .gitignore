@@ -2,6 +2,6 @@ app/__pycache__
 app/Aryabhatan/__pycache__
 app/Katapayadi/__pycache__
 app/Sexagesimal/__pycache__
-app/Bhutsankhya/__pycache__
+app/Bhutasankhya/__pycache__
 app/Chakravala/__pycache__
 *.pyc
