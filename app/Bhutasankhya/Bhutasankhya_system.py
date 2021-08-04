@@ -46,10 +46,10 @@ def Encoder():
         choices, available = encoder(data, DATABASE)
 
         if not available:
-            return render_template('bhutasankhya-decoder.html', form=form, available=available, title='Bhutasankhya', scroll='encoder')
+            return render_template('bhutasankhya-encoder.html', form=form, available=available, title='Bhutasankhya', scroll='encoder')
         
         else:
-            return render_template('bhutasankhya-decoder.html', form=form, choices=choices,  title='Bhutasankhya', scroll='encoder')
+            return render_template('bhutasankhya-encoder.html', form=form, choices=choices,  title='Bhutasankhya', scroll='encoder')
 
     else:
-        return render_template('bhutasankhya-decoder.html', form=form, title='Bhutasankhya', scroll='encoder')
+        return render_template('bhutasankhya-encoder.html', form=form, title='Bhutasankhya', scroll='encoder')

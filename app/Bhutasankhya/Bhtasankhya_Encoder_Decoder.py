@@ -220,12 +220,13 @@ def bhutasankhya_decoder(word,database, scheme):
     #print("Sorry, the word has no Bhutasankhya according to our database")
     return string, breakup, False
 
-def encoder(num, jsonfile):
+def encoder(num, DATABASE):
     #nume = input("Please Input a number: ")
     database = dict()
 
     # Reading from json file
-    json_object = json.load(jsonfile)
+    with open(DATABASE, 'r') as jsonfile:
+        json_object = json.load(jsonfile)
 
     for number in json_object:
 
@@ -233,12 +234,13 @@ def encoder(num, jsonfile):
 
     return bhutasankhya(num, database)
 
-def decoder(word, jsonfile, scheme):
+def decoder(word, DATABASE, scheme):
     #word = input("Input a word: ")
     database = dict()
 
     # Reading from json file
-    json_object = json.load(jsonfile)
+    with open(DATABASE, 'r') as jsonfile:
+        json_object = json.load(jsonfile)
     
     for number in json_object:
 
