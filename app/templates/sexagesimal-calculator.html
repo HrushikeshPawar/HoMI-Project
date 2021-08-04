@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="my-output">
-                    {% if Dec2Sexa_output %}
+                    {% if Dec2Sexa_output != '' %}
                         <p class="Convert_output" name="Dec2Sexa_output" type="text">{{ Dec2Sexa_output }}</p>
                     {% else %}
                         <p class="Convert_output" name="Dec2Sexa_output" type="text">Sexagesimal</p>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="my-output">
-                    {% if Sexa2Dec_output %}
+                    {% if Sexa2Dec_output != '' %}
                         <p class="Convert_output" name="Sexa2Dec_output" type="text">{{ Sexa2Dec_output }}</p>
                     {% else %}
                         <p class="Convert_output" name="Sexa2Dec_output" type="text">Decimal</p>
@@ -196,17 +196,18 @@
                 <div class="my-output">
                     <br>
                     {% if Inc_output != 'Invalid Input' and Inc_output %}
-                        <table class="table">
-                        <tr class="table__header">
-                            <th class="table__cell">Increment Table</th>
-                        </tr>
-                        {% for row in Inc_output %}
-                            <tr class="table__row">
-                            <td class="table__cell"> {{ row }}</td>
+                        <div class="table-container">
+                            <table class="table">
+                            <tr class="table__header">
+                                <th class="table__cell">Increment Table</th>
                             </tr>
-                        {% endfor %}
-
-                        </table>
+                            {% for row in Inc_output %}
+                                <tr class="table__row">
+                                <td class="table__cell"> {{ row }}</td>
+                                </tr>
+                            {% endfor %}
+                            </table>
+                        </div>
                     {% elif Inc_output == 'Invalid Input' and Inc_output %}
                         <h4 style='text-align: center;' >{{ Inc_output }} </h4>
                     {% endif %}
