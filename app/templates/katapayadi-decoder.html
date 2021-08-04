@@ -21,23 +21,25 @@
             {% endif %}
 
             {% if Data %}
-            {% for row in Data %}
-                <p><b>{{ row }}</b> {{ Data[row] }}</p> 
-            {% endfor %}
-            <table class="table table-striped" align="center">
-                <tr>
-                    <th scope="col"> Syllable </th>
-                    <th scope="col"> Number </th>
-                </tr>
-
-                {% for row in Syllables_Data %}
-                    <tr>
-                        <td> {{ row }} </td>
-                        <td> {{ Syllables_Data[row] }} </td>
-                    </tr>
+                {% for row in Data %}
+                    <p><b>{{ row }}</b> {{ Data[row] }}</p> 
                 {% endfor %}
+                <div class="table-container">
+                    <table class="table table-striped">
+                        <tr>
+                            <th scope="col"> Syllable </th>
+                            <th scope="col"> Number </th>
+                        </tr>
+
+                        {% for row in Syllables_Data %}
+                            <tr>
+                                <td> {{ row }} </td>
+                                <td> {{ Syllables_Data[row] }} </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             {% endif %}
-            </table>
         </form>
     </div>
 </div>

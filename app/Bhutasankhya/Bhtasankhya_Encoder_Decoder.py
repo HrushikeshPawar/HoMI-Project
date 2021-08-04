@@ -164,10 +164,15 @@ def slp2dev(src, convert_numbers=True):
         inc += 1
     return tgt
 
-def bhutasankhya (nume,database):
-    try:    
-        option = database[nume]
-        option= sample(option,k=2)
+def bhutasankhya (nume, k, database):
+    try:
+        
+        option = database[str(nume)]
+        flag = len(option)
+
+        if flag > k:
+            option= sample(option, k)
+        
         i = 1
         choices = []
         for sentem in option:
@@ -177,11 +182,14 @@ def bhutasankhya (nume,database):
           choices.append(sentem)
           i +=1
         
-        return choices, True
+        if choices == []:
+            return choices, False, flag
+        
+        return choices, True, flag
         
     except:
-        
-        return [], False
+        flag = 0
+        return [], False, flag
 
 def bhutasankhya_decoder(word,database, scheme):
     #scheme = detect.detect(word)
@@ -211,7 +219,7 @@ def bhutasankhya_decoder(word,database, scheme):
                 if str(llist[i][j]) in value:
                     
                     string += str(key)
-                    breakup.append((llist[i][j], value, str(key)))
+                    breakup.append((llist[i][j], str(key)))
                     count+=1
                     continue
         if count==len(llist[i]):
@@ -220,7 +228,7 @@ def bhutasankhya_decoder(word,database, scheme):
     #print("Sorry, the word has no Bhutasankhya according to our database")
     return string, breakup, False
 
-def encoder(num, DATABASE):
+def encoder(num, k, DATABASE):
     #nume = input("Please Input a number: ")
     database = dict()
 
@@ -231,8 +239,8 @@ def encoder(num, DATABASE):
     for number in json_object:
 
         database[number] = json_object[number]
-
-    return bhutasankhya(num, database)
+    
+    return bhutasankhya(num, k, database)
 
 def decoder(word, DATABASE, scheme):
     #word = input("Input a word: ")

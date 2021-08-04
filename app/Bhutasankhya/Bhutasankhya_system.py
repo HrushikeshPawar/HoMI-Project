@@ -41,15 +41,29 @@ def Encoder():
     
     if form.validate_on_submit():
 
-        data = form.Input.data
+        n = form.Input.data
+        k = form.Options.data
 
-        choices, available = encoder(data, DATABASE)
+        choices, available, flag = encoder(n, k, DATABASE)
+        print(available)
+        
 
         if not available:
-            return render_template('bhutasankhya-encoder.html', form=form, available=available, title='Bhutasankhya', scroll='encoder')
+            return render_template('bhutasankhya-encoder.html', form=form, available='No', title='Bhutasankhya', scroll='encoder')
         
         else:
-            return render_template('bhutasankhya-encoder.html', form=form, choices=choices,  title='Bhutasankhya', scroll='encoder')
+
+            if flag > k:
+                text = f'The database has {flag} different options for number {n}. Showing {k} random options.'
+                return render_template('bhutasankhya-encoder.html', form=form, text=text, choices=choices,  title='Bhutasankhya', scroll='encoder')
+            
+            elif flag < k:
+                text = f'The database has only {flag} different options for number {n}. Showing all available options.'
+                return render_template('bhutasankhya-encoder.html', form=form, text=text, choices=choices,  title='Bhutasankhya', scroll='encoder')
+            
+            else:
+                text = f'The database has exactly {flag} different options for number {n}. Showing all available options.'
+                return render_template('bhutasankhya-encoder.html', form=form, text=text, choices=choices,  title='Bhutasankhya', scroll='encoder')
 
     else:
         return render_template('bhutasankhya-encoder.html', form=form, title='Bhutasankhya', scroll='encoder')

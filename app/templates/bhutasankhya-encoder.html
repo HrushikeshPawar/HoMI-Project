@@ -10,12 +10,13 @@
             {{ form.hidden_tag() }}
 
             {{ form.Input.label }} {{ form.Input }} <br>
+            {{ form.Options.label }} {{ form.Options }} <br><br>
                 
             {{ form.Submit }} <br><br>
 
             <div class="Output">
                 {% if choices %}
-                    <p>The current database has following options for given number.</p>
+                    <p>{{ text }}</p>
                     <div class="table-container">
                         <table class="table table-striped">
                             <tr>
@@ -30,6 +31,9 @@
                             {% endfor %}
                         </table>
                     </div>
+                {% endif %}
+                {% if available %}
+                    <p>Our current database doesn not have any word corresponding to given sankhya. This will be taken care of in subsequent updates.</p>
                 {% endif %}
             </div>
         </form>
