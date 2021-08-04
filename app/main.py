@@ -5,6 +5,7 @@ from .Katapayadi.katapayadi import katapayadi
 from .Aryabhatan.aryabhatan_system import aryabhatan
 from .Chakravala.chakravala_method import Chakravala
 import sqlite3
+import os
 
 
 app = Flask(__name__, static_url_path='/static')
@@ -17,7 +18,7 @@ app.config['SECRET_KEY'] = 'a54d04a4ce38193acc5407a681df2400'
 
 Markdown(app, tables=True)
 
-DATABASE = 'Demo_Database.db'
+DATABASE =  os.path.join(os.getcwd(), 'app', 'Demo_Database.db')
 
 def get_db():
     db = getattr(g, '_database', None)
