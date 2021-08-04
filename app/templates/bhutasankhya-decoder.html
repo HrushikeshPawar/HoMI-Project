@@ -1,0 +1,46 @@
+{% extends 'bhutasankhya.html' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock css %}
+{% block tool %}
+<h3  id='decoder'>Bhūtasaṅkhyā Decoder</h3>
+    <div class="form-container">
+        <form action="/tools/bhutasankhya-decoder" method="post">
+            {{ form.hidden_tag() }}
+            {{ form.Input.label }} {{ form.Input }} <p></p>
+            {{ form.Encoding.label}} {{ form.Encoding }} <p></p>
+            {{ form.Verbose.label }} {{ form.Verbose }} <br><br>
+
+            {{ form.Submit }} <br><br>
+    
+            {% if normal %}
+                <p><b> Normal Bhutasankhya Decoding : </b> {{ normal }}</p>
+                <p><b> Reverse Bhutasankhya Decoding : </b> {{ reverse }}</p>
+            {% endif %}
+
+            {% if breakup %}
+                <table class="table table-striped" align="center">
+                    <tr>
+                        <th scope="col"> Sandhi </th>
+                        <th scope="col"> Word </th>
+                        <th scope="col"> Value </th>
+                    </tr>
+
+                    {% for row in breakup %}
+                        <tr>
+                            <td> {{ row[0] }} </td>
+                            <td> {{ row[1] }} </td>
+                            <td> {{ row[2] }} </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+            
+            {% if error %}
+                <h4>Sorry, the word has no Bhutasankhya according to our database</h4>
+            {% endif %}
+        </form>
+    </div>
+</div>
+<br><br><br>
+{% endblock tool %}

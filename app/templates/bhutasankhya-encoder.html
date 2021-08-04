@@ -1,0 +1,38 @@
+{% extends 'bhutasankhya.html' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock css %}
+{% block tool %}
+<div style="background-color:white;">
+    <h3 id='encoder'>Bhūtasaṅkhyā Encoder</h3>
+    <div class="form-container">
+        <form action="/tools/bhutasankhya-encoder" method="post">
+            {{ form.hidden_tag() }}
+
+            {{ form.Input.label }} {{ form.Input }} <br>
+                
+            {{ form.Submit }} <br><br>
+
+            <div class="Output">
+                {% if choices %}
+                    <p>The current database has following options for given number.</p>
+                    <div class="table-container">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>#</th>
+                                <th>Words</th>
+                            </tr>
+                            {% for i in range( choices | length ) %}
+                                <tr>
+                                    <td>{{i+1}}</td>
+                                    <td>{{choices[i]}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                {% endif %}
+            </div>
+        </form>
+    </div>    
+</div>
+{% endblock tool %}
