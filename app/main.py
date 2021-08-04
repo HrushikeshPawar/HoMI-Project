@@ -3,19 +3,21 @@ from flaskext.markdown import Markdown
 from .Sexagesimal.sexagesimalCalculator import sexagesimal
 from .Katapayadi.katapayadi import katapayadi
 from .Aryabhatan.aryabhatan_system import aryabhatan
+from .Chakravala.chakravala_method import Chakravala
 import sqlite3
-import os
+
 
 app = Flask(__name__, static_url_path='/static')
 app.register_blueprint(sexagesimal, url_prefix='/tools')
 app.register_blueprint(aryabhatan, url_prefix='/tools')
 app.register_blueprint(katapayadi, url_prefix='/tools')
+app.register_blueprint(Chakravala, url_prefix='/tools')
 
 app.config['SECRET_KEY'] = 'a54d04a4ce38193acc5407a681df2400'
 
 Markdown(app, tables=True)
-DATABASE =  os.path.join(os.getcwd(), 'app', 'Demo_Database.db')
-print(DATABASE)
+
+DATABASE = 'Demo_Database.db'
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -51,6 +53,9 @@ def aryabhatan_system():
 def bhutasankhya_system():
     return render_template('bhutasankhya.html', title='Bhutasankhya')
 
+@app.route('/chakravala')
+def chakravala_method():
+    return render_template('chakravala.html', title='Chakravala')
 
 if __name__ == '__main__':
     app.run(debug=True)

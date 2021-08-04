@@ -1,0 +1,50 @@
+{% extends 'chakravala.html' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock css %}
+{% block tool %}
+<div style="background-color:white;">
+    <h3 id='chakravala'>Chakravala Calculator</h3>
+    <div class="form-container">
+        <form action="/tools/chakravala-calculator" method="post">
+            {{ form.hidden_tag() }}
+
+            {{ form.Input.label }} {{ form.Input }} <br>
+            {{ form.Verbose.label}} {{ form.Verbose }} <br><br>
+                
+            {{ form.Submit }} <br><br>
+
+            <div class="Output">
+                {% if text %}
+                    <p>{{ text|markdown }}</p>
+
+                    {% if iteration %}
+                        <div class="table-container">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>#</th>
+                                    <th>a</th>
+                                    <th>b</th>
+                                    <th>m</th>
+                                </tr>
+                                {% for i in range( iteration | length ) %}
+                                    <tr>
+                                        <td>{{i+1}}</td>
+                                        <td>{{iteration[i][0]}}</td>
+                                        <td>{{iteration[i][1]}}</td>
+                                        <td>{{iteration[i][2]}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                {% if error %}
+                    <h3>Invalid Input</h3>
+                {% endif %}
+            </div>
+        </form>
+    </div>    
+</div>
+{% endblock tool %}
+

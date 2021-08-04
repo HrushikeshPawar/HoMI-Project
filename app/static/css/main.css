@@ -76,7 +76,15 @@ h3 {
     max-width :auto !important;
     text-align: center;
     align-content: center;
+    border-collapse: collapse;
+    border: 1px solid black;
 }
+
+th, td {
+    border: 1px solid black;
+}
+
+
 
 .table-container{
     display: flex !important;
@@ -88,6 +96,6 @@ b {
     padding-right: 1rem !important;
 }
 
-.no-border {
+.accordion-item {
     border: none !important;
 }
