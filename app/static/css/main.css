@@ -99,3 +99,7 @@ b {
 .accordion-item {
     border: none !important;
 }
+
+.Accordion-item {
+    width : 80%
+}
