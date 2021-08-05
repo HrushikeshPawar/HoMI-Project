@@ -19,23 +19,29 @@
             {% endif %}
 
             {% if breakup %}
-                <table class="table table-striped" align="center">
-                    <tr>
-                        <th scope="col"> Sandhi </th>
-                        <th scope="col"> Value </th>
-                    </tr>
-
-                    {% for row in breakup %}
+                <p><b> Input in Devnagari : </b> {{ Input }}</p>
+                <div class="table-container">
+                    <table class="table table-striped" align="center">
                         <tr>
-                            <td> {{ row[0] }} </td>
-                            <td> {{ row[1] }} </td>
+                            <th scope="col"> Sandhi </th>
+                            <th scope="col"> Value </th>
                         </tr>
-                    {% endfor %}
-                </table>
+
+                        {% for row in breakup %}
+                            <tr>
+                                <td> {{ row[0] }} </td>
+                                <td> {{ row[1] }} </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             {% endif %}
             
             {% if error %}
-                <h4>Sorry, the word has no Bhutasankhya according to our database</h4>
+                <p>Sorry, the word has no Bhutasankhya according to our database</p>
+            {% endif %}
+            {% if invalid %}
+                <p>{{ invalid }}</p>
             {% endif %}
         </form>
     </div>

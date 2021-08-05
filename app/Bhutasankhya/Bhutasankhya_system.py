@@ -20,16 +20,24 @@ def Decoder():
         scheme = form.Encoding.data
         verbose = form.Verbose.data
 
-        string, breakup, available = decoder(data, DATABASE, scheme)
+        string, breakup, available, Input = decoder(data, DATABASE, scheme)
+        normal = "".join(string[::-1])
+        reverse = "".join(string)
+
+        if available == 'Invalid Input':
+            invalid = 'Invalid Input. Please check if right scheme is selected and there are no spelling mistakes.'
+            return render_template('bhutasankhya-decoder.html', form=form, invalid=invalid, title='Bhutasankhya', scroll='decoder')
+
+        
 
         if not available:
             return render_template('bhutasankhya-decoder.html', form=form, error=True, title='Bhutasankhya', scroll='decoder')
         
         else:
             if verbose:
-                return render_template('bhutasankhya-decoder.html', form=form, normal=string[::-1], reverse=string, breakup=breakup,  title='Bhutasankhya', scroll='decoder')
+                return render_template('bhutasankhya-decoder.html', form=form, Input=Input, normal=normal, reverse=reverse, breakup=breakup,  title='Bhutasankhya', scroll='decoder')
             else:
-                return render_template('bhutasankhya-decoder.html', form=form, normal=string[::-1], reverse=string,  title='Bhutasankhya', scroll='decoder')
+                return render_template('bhutasankhya-decoder.html', form=form, Input=Input, normal=normal, reverse=reverse,  title='Bhutasankhya', scroll='decoder')
 
     else:
         return render_template('bhutasankhya-decoder.html', form=form, title='Bhutasankhya', scroll='decoder')
@@ -49,7 +57,7 @@ def Encoder():
         
 
         if not available:
-            return render_template('bhutasankhya-encoder.html', form=form, available='No', title='Bhutasankhya', scroll='encoder')
+            return render_template('bhutasankhya-encoder.html', form=form, available='No`   ', title='Bhutasankhya', scroll='encoder')
         
         else:
 

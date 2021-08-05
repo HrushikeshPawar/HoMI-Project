@@ -198,35 +198,40 @@ def bhutasankhya_decoder(word,database, scheme):
     if scheme_map[0] != "":
         word = get_transliteration(word, scheme_map[0])
     
-    
     for i in database:
         if word in database[i]:
-            #print("The Bhutasankhya of the word is: ",i)
-            return i, [word], True
-    parser = Parser()
+            scheme_map = SchemeMap(SCHEMES[sanscript.SLP1], SCHEMES[sanscript.DEVANAGARI])
+            return i, [(get_transliteration(word, scheme_map), str(i))], True, get_transliteration(word, scheme_map)
+
+    try:
+        parser = Parser()
         
-    splits = list(parser.split(word, limit=10))
-    llist = []
-    breakup = []
-    for split in splits:
-        llist.append(split.split)
-    for i in range(len(llist)):
-        string=""
-        count =0
-        for j in range(len(llist[i])):
-            
-            for key,value in database.items():
-                if str(llist[i][j]) in value:
-                    
-                    string += str(key)
-                    breakup.append((llist[i][j], str(key)))
-                    count+=1
-                    continue
-        if count==len(llist[i]):
-            #print("The Bhutasankhya of the word is: "+ string)
-            return string, breakup, True
-    #print("Sorry, the word has no Bhutasankhya according to our database")
-    return string, breakup, False
+        splits = list(parser.split(word, limit=10))
+        llist = []
+        breakup = []
+        for split in splits:
+            llist.append(split.split)
+
+        scheme_map = SchemeMap(SCHEMES[sanscript.SLP1], SCHEMES[sanscript.DEVANAGARI])
+        for i in range(len(llist)):
+            string = []
+            count = 0
+            for j in range(len(llist[i])):
+                
+                for key,value in database.items():
+                    if str(llist[i][j]) in value:
+                        string.append(str(key))
+                        breakup.append((get_transliteration(llist[i][j], scheme_map), str(key)))
+                        count+=1
+                        continue
+
+            if count==len(llist[i]):
+                return string, breakup, True, get_transliteration(word, scheme_map)
+        
+        return string, breakup, False, get_transliteration(word, scheme_map)
+    
+    except Exception as e:
+        return [], [], 'Invalid Input', ''
 
 def encoder(num, k, DATABASE):
     #nume = input("Please Input a number: ")
