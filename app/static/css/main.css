@@ -84,8 +84,6 @@ th, td {
     border: 1px solid black;
 }
 
-
-
 .table-container{
     display: flex !important;
     justify-content: space-around !important;
@@ -102,4 +100,11 @@ b {
 
 .Accordion-item {
     width : 80%
+}
+
+.feedback {
+    border-top: 1px solid black;
+    display: flex;
+    margin : 0 auto;
+    justify-content: center;
 }
