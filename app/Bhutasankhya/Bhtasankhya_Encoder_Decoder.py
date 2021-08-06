@@ -164,6 +164,18 @@ def slp2dev(src, convert_numbers=True):
         inc += 1
     return tgt
 
+def splitter(l):
+    n = len(l)
+    k=[]
+    if n%2:
+        z= n//2 +1
+    else:
+        z= n//2
+    for i in range(0,2*z,2):
+
+        k.append((l[i:i+2]))
+    return k
+
 def bhutasankhya (nume, k, database):
     try:
         
@@ -177,22 +189,30 @@ def bhutasankhya (nume, k, database):
         choices = []
         for sentem in option:
           sentem = slp2dev(sentem)
-
-          #print(f"\t{i}. {sentem}")
           choices.append(sentem)
           i +=1
-        
-        if choices == []:
-            return choices, False, flag
-        
-        return choices, True, flag
+    
+        return choices, 'non-split', flag
         
     except:
-        flag = 0
-        return [], False, flag
+        nume2 = splitter(nume)
+        string = []
+        breakup = []
+        for i in nume2:
+            if i in database:
+                string.append(slp2dev(sample(database[i],k=1)[0]))
+                breakup.append(i)
+            else :
+                string.extend([slp2dev(sample(database[i[0]],k=1)[0]), slp2dev(sample(database[i[1]],k=1)[0])])
+                breakup.extend([i[0], i[1]])
+
+        string = '-'.join(string[::-1])
+        breakup = '-'.join(breakup)
+        
+        return string, breakup,  False
 
 def bhutasankhya_decoder(word,database, scheme):
-    #scheme = detect.detect(word)
+    
     scheme_map = get_scheme_map(scheme)
         
     if scheme_map[0] != "":
@@ -245,7 +265,11 @@ def encoder(num, k, DATABASE):
 
         database[number] = json_object[number]
     
-    return bhutasankhya(num, k, database)
+    options = []
+    for i in [num, num[::-1]]:
+      options.append(bhutasankhya(i, k, database))
+    
+    return options
 
 def decoder(word, DATABASE, scheme):
     #word = input("Input a word: ")

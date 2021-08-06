@@ -1,6 +1,11 @@
 {% extends 'bhutasankhya.html' %}
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <style>
+        b {
+            padding-right : 0rem !important
+        }
+    </style>
 {% endblock css %}
 {% block tool %}
 <div style="background-color:white;">
@@ -15,32 +20,93 @@
             {{ form.Submit }} <br><br>
 
             <div class="Output">
-                {% if choices %}
-                    <p>{{ text }}</p>
+                {% if normal_flag %}
+                    {% if normal_flag > k%}
+                        <p>The database has {{ normal_flag }} different options in <b>standard encoding</b> for given number. Showing {{ k }} random options.</p>
+                    {% elif normal_flag < k %}
+                        <p>The database has only {{ normal_flag }} different options in <b>standard encoding</b> for given number. Showing all available options.</p>
+                    {% else %}
+                        <p>The database has exactly  {{ normal_flag }} different options in <b>standard encoding</b> for given number. Showing all available options.</p>
+                    {% endif %}
+
                     <div class="table-container">
                         <table class="table table-striped">
                             <tr>
                                 <th>#</th>
                                 <th>Words</th>
                             </tr>
-                            {% for i in range( choices | length ) %}
+                            {% for i in range( normal_choices | length ) %}
                                 <tr>
                                     <td>{{i+1}}</td>
-                                    <td>{{choices[i]}}</td>
+                                    <td>{{normal_choices[i]}}</td>
                                 </tr>
                             {% endfor %}
                         </table>
                     </div>
                 {% endif %}
-                {% if available %}
-                    <p>Our current database doesn not have any word corresponding to given sankhya. This will be taken care of in subsequent updates.</p>
+
+                {% if normal_breakup %}
+                    <p>Our current database doesn not have any word corresponding to <b>standard encoding</b> for {{ form.Input.data }}. But right now, we can construct one word cluster to represent the given sankhya. In the subsequent updates the number of word clusters will be increased.</p>
+                    <div class="table-container">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Word Cluster</th>
+                                <th>Partition</th>
+                            </tr>
+                            <tr>
+                                <td>{{normal_choices}}</td>
+                                <td>{{normal_breakup}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                {% endif %}
+
+                {% if reverse_flag %}
+                    {% if reverse_flag > k%}
+                        <p>The database has {{ reverse_flag }} different options in  <b>reverse encoding</b> for given number. Showing {{ k }} random options.</p>
+                    {% elif reverse_flag < k %}
+                        <p>The database has only {{ reverse_flag }} different options in <b>reverse encoding</b> for given number. Showing all available options.</p>
+                    {% else %}
+                        <p>The database has exactly  {{ reverse_flag }} different options in <b>reverse encoding</b> for given number. Showing all available options.</p>
+                    {% endif %}
+
+                    <div class="table-container">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>#</th>
+                                <th>Words</th>
+                            </tr>
+                            {% for i in range( reverse_choices | length ) %}
+                                <tr>
+                                    <td>{{i+1}}</td>
+                                    <td>{{reverse_choices[i]}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                {% endif %}
+
+                {% if reverse_breakup %}
+                    <p>Our current database doesn not have any word corresponding to <b>reverse encoding</b> of given sankhya. But right now, we can construct one word cluster to represent the given sankhya. In the subsequent updates the number of word clusters will be increased.</p>
+                    <div class="table-container">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Word Cluster</th>
+                                <th>Partition</th>
+                            </tr>
+                            <tr>
+                                <td>{{reverse_choices}}</td>
+                                <td>{{reverse_breakup}}</td>
+                            </tr>
+                        </table>
+                    </div>
                 {% endif %}
             </div>
         </form>
     </div>
 
     <div class="feedback">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScMmaTTg7d2PDMqToWM2wPhHgw6fxowLWdY7WGDKjVSg9-Ocw/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScMmaTTg7d2PDMqToWM2wPhHgw6fxowLWdY7WGDKjVSg9-Ocw/viewform?embedded=true" width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     </div>
 </div>
 {% endblock tool %}

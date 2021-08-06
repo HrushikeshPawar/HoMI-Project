@@ -16,13 +16,13 @@ def Decoder():
 
     if form.validate_on_submit():
 
-        data = form.Input.data
+        data = form.Input.data.strip()
         scheme = form.Encoding.data
         verbose = form.Verbose.data
 
         string, breakup, available, Input = decoder(data, DATABASE, scheme)
-        normal = "".join(string[::-1])
-        reverse = "".join(string)
+        normal = "".join(string)
+        reverse = "".join(string[::-1])
 
         if available == 'Invalid Input':
             invalid = 'Invalid Input. Please check if right scheme is selected and there are no spelling mistakes.'
@@ -49,15 +49,50 @@ def Encoder():
     
     if form.validate_on_submit():
 
-        n = form.Input.data
+        n = str(form.Input.data)
         k = form.Options.data
 
-        choices, available, flag = encoder(n, k, DATABASE)
-        print(available)
+        Normal, Reverse  = encoder(n, k, DATABASE)
+        
+        if Normal[-1] != False:
+            normal_choices = Normal[0]
+            normal_flag = Normal[-1]
+            normal_breakup = []
+        else:
+            normal_choices = Normal[0]
+            normal_breakup = Normal[1]
+            normal_flag = []
+        
+        if Reverse[-1] != False:
+            reverse_choices = Reverse[0]
+            reverse_flag = Reverse[-1]
+            reverse_breakup = []
+        else:
+            reverse_choices = Reverse[0]
+            reverse_breakup = Reverse[1]
+            reverse_flag = []
         
 
-        if not available:
-            return render_template('bhutasankhya-encoder.html', form=form, available='No`   ', title='Bhutasankhya', scroll='encoder')
+        if normal_breakup == [] and reverse_breakup == []:
+            return render_template('bhutasankhya-encoder.html', form=form, normal_choices=normal_choices, reverse_choices=reverse_choices, normal_flag=normal_flag, reverse_flag=reverse_flag, k=k, title='Bhutasankhya', scroll='encoder')
+        
+        elif normal_breakup == [] and reverse_breakup != []:
+            return render_template('bhutasankhya-encoder.html', form=form, normal_choices=normal_choices, reverse_choices=reverse_choices, normal_flag=normal_flag, reverse_breakup=reverse_breakup, k=k, title='Bhutasankhya', scroll='encoder')
+        
+        elif normal_breakup != [] and reverse_breakup == []:
+            return render_template('bhutasankhya-encoder.html', form=form, normal_choices=normal_choices, reverse_choices=reverse_choices, normal_breakup=normal_breakup, reverse_flag=reverse_flag, k=k, title='Bhutasankhya', scroll='encoder')
+        
+        elif normal_breakup != [] and reverse_breakup != []:
+            return render_template('bhutasankhya-encoder.html', form=form, normal_choices=normal_choices, reverse_choices=reverse_choices, normal_breakup=normal_breakup, reverse_breakup=reverse_breakup, k=k, title='Bhutasankhya', scroll='encoder')
+        
+        else:
+            print('Error')
+        
+
+        """
+        if breakup != 'non-split':
+            return render_template('bhutasankhya-encoder.html', form=form, choices=choices, breakup=breakup, Encodings=Encodings
+                                    , title='Bhutasankhya', scroll='encoder')
         
         else:
 
@@ -72,6 +107,6 @@ def Encoder():
             else:
                 text = f'The database has exactly {flag} different options for number {n}. Showing all available options.'
                 return render_template('bhutasankhya-encoder.html', form=form, text=text, choices=choices,  title='Bhutasankhya', scroll='encoder')
-
+        """
     else:
         return render_template('bhutasankhya-encoder.html', form=form, title='Bhutasankhya', scroll='encoder')

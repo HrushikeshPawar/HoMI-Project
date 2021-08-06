@@ -1,7 +1,38 @@
 {% extends 'base.html' %}
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sexagesimal-calculator.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <style>
+        @media only screen and (max-width: 720px){
+            .feedback {
+                border-top: 1px solid black !important;
+                display: flex !important;
+                margin : 0 auto !important;
+                justify-content: center !important;
+                padding-top: 2rem !important;
+            }
+            iframe {
+                height : 1200px
+            }
+        }
+
+
+
+        @media only screen and (min-width: 720px){                
+            .feedback {
+                border-top: 1px solid black !important;
+                display: flex !important;
+                margin : 0 auto !important;
+                justify-content: center !important;
+                padding-top: 2rem !important;
+            }
+
+            iframe {
+                height: 1000px
+            }
+            
+        }
+
+    </style>
 {% endblock css %}
 
 {% block content %}

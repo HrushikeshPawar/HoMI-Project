@@ -9,6 +9,18 @@ html {
         margin: 5px 0px !important;
         overflow: auto;
     }
+
+    .feedback {
+        border-top: 1px solid black !important;
+        display: flex !important;
+        margin : 0 auto !important;
+        justify-content: center !important;
+        padding-top: 2rem !important;
+    }
+
+    iframe {
+        height : 1200px
+    }
 }
 
 
@@ -107,4 +119,9 @@ b {
     display: flex !important;
     margin : 0 auto !important;
     justify-content: center !important;
+    padding-top: 2rem !important;
+}
+
+iframe {
+    height: 1000px
 }
