@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/sexagesimal-calculator.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 {% endblock css %}
 
 {% block content %}
@@ -225,6 +226,10 @@
            
         </nav>
     </div>
+</div>
+
+<div class="feedback">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScMmaTTg7d2PDMqToWM2wPhHgw6fxowLWdY7WGDKjVSg9-Ocw/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 </div>
 {% endblock content %}
 
