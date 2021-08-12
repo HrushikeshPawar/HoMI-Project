@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock css %}
 {% block content %}
-    <h1>Information about the Chakravala Method</h1>
-    <h2>Background</h2>
-    <h2>Working</h2>
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                Chakravala Method
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p>{{"""The *cakravala* method is a cyclic algorithm to solve indeterminate quadratic equations of type a<sup>2</sup>  = N*b<sup>2</sup>  + 1, attributed to Bhāskara II. Our application produces the values of a and b and the verbose option produces the intermediate steps. For more information, go to [Chakravala Method](https://en.wikipedia.org/wiki/Chakravala_method)."""|markdown}}</P>
 
-    <a class="btn btn-outline-primary" href="/tools/chakravala-calculator">Calculator</a>
-    {% block tool %}{% endblock tool %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+        <a class="btn btn-outline-primary" href="/tools/chakravala-calculator">Calculator</a>
+    </div>
+{% block tool %}{% endblock tool %}
 {% endblock content %}
