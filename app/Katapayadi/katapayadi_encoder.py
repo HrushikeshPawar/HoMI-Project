@@ -281,8 +281,8 @@ def Single_Digit_Encoder(Number, Options):
 def Katapayadi_Encoder(Number, options, Database):
     if options == "":
         options = 5
+        
     global cursor
-    #Database = sqlite3.connect(f'''Demo_Database.db''')
     cursor = Database.cursor()
     options = int(options)
     Number_of_words = options

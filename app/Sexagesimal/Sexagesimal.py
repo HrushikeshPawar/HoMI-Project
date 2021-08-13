@@ -11,7 +11,6 @@ class Sexagesimal:
         S = str(S).strip()
 
         self.S = S
-        #self.negative = negative
 
         if S[0] == "-":
             self.negative = True
@@ -48,6 +47,10 @@ class Sexagesimal:
         
         D = [f"{N:0>2}"] + D
 
+        Inputs = D + F
+        for n in Inputs:
+            if int(n) > 59:
+                raise Exception("Fractional Part has 60+ entry")
 
         D, F = ",".join([d.strip() for d in D]), ",".join([f.strip() for f in F])
         

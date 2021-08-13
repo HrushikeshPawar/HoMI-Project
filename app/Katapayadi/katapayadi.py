@@ -47,7 +47,7 @@ def Encoder():
 
         if len(data) == 1:
             label_words, words = Katapayadi_Encoder(data, options, Database)
-            print(label_words)
+            print(label_words, data)
             return render_template('katapayadi-encoder.html', form=form, label_words=label_words, words=words, title='Katapayadi', scroll='encoder')
 
         N_Words_lable, N_Words, R_Words_lable, R_Words, N_Sentences_Dict, R_Sentences_Dict = Katapayadi_Encoder(data, options, Database)

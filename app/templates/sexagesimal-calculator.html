@@ -227,7 +227,7 @@
                 </div>
                 <div class="my-output">
                     <br>
-                    {% if Inc_output != 'Invalid Input' and Inc_output %}
+                    {% if 'Invalid Input' not in Inc_output%}
                         <div class="table-container">
                             <table class="table">
                             <tr class="table__header">
@@ -240,7 +240,7 @@
                             {% endfor %}
                             </table>
                         </div>
-                    {% elif Inc_output == 'Invalid Input' and Inc_output %}
+                    {% elif 'Invalid Input' in Inc_output %}
                         <h4 style='text-align: center;' >{{ Inc_output }} </h4>
                     {% endif %}
                     <br><br>

@@ -221,11 +221,8 @@ def Calculator():
                     Mul_Verbose = None
         except Exception as e:
             Mul_Input = Mul_Input.replace(' ', '')
-
-            if Mul_Verbose == 'on':
-                Mul_output = MultiAdvance(Mul_Input)
-            else:
-                Mul_output = Multiplication(Mul_Input)
+            print(e)
+            Mul_output = 'Invalid Input'
         
     if 'Div_Dividend' in request.form and 'Div_Divisor' in request.form:
         
@@ -263,18 +260,8 @@ def Calculator():
                         Div_output = DiviAdvance(Div_Dividend, Div_Divisor, Precision=int(Div_Set_Precision), Verbose=True)
 
         except Exception as e:
-            if Div_Dividend != '' and Div_Divisor != '':
-                if Div_Set_Precision == '':
-                    Div_Set_Precision = 20
-
-                if Div_Radio == 'Div_Normal':
-                    Div_output = Division(Div_Dividend, Div_Divisor)
-                elif Div_Radio == 'Div_Precision':
-                    Div_output = DiviAdvance(Div_Dividend, Div_Divisor, Precision=int(Div_Set_Precision), Verbose=False)
-                else:
-                    Div_output = DiviAdvance(Div_Dividend, Div_Divisor, Precision=int(Div_Set_Precision), Verbose=True)
-            else:
-                Div_output = 'Invalid Input'
+            print(e)
+            Div_output = 'Invalid Input'
 
     if 'Inc_Initial' in request.form:
         
@@ -450,88 +437,8 @@ def Calculator():
                 if Inc_Mod == 0:
                     Inc_Mod = ''
         except Exception as e:
-            if Inc_Increment != '' and Inc_Initial != '':
-                Inputs = [Inc_Initial, Inc_Increment]
-                flag = 0
-                for Input in Inputs:
-
-                    if not isValidInput(Input):
-                        flag = 1
-                        break
-                
-                for i in range(len(Inputs)):
-                    if '.' in Inputs[i]:
-                        Inputs[i] = Sexagesimal.decimal2Sexagesimal(Inputs[i].strip())
-                    else:
-                        Inputs[i] = Sexagesimal(Inputs[i].strip())
-
-                Inc_Initial, Inc_Increment = Inputs
-                try:
-                    Inc_Rows = int(Inc_Rows)
-                    Inc_Mod = int(Inc_Mod)
-                except:
-                    if type(Inc_Rows) == type(1) and Inc_Mod == '':
-                        Inc_Rows = int(Inc_Rows)
-                        Inc_Mod = 0
-                    else:
-                        flag = 1
-                
-                if flag == 0:
-                    if Inc_Mod < 2 or Inc_Mod == '':
-                        Inc_Mod = 0
-                
-                    A = Sexagesimal(Inc_Initial)
-                    i=0
-                    Inc_output = []
-
-                    if A.negative:
-                        Inc_output.append(f'-{A.S}')
-                    else:
-                        Inc_output.append(A.S)
-                    
-                    while i < Inc_Rows:
-
-                        B = Sexagesimal(Inc_Increment)
-                        A = A + B
-                        
-                        A_I = Integral2Decimal(A)
-                        A_D, A_F = A_I.split(";")
-                        
-                        if Inc_Mod == 0:
-                            
-                            if A.negative == True and A.S != "00;00":
-                                A = Sexagesimal(f"-{A_D};{A_F}")
-                                Inc_output.appned(f"-{Integral2Decimal(A)}")
-                                
-                            else:
-                                A = Sexagesimal(f"{A_D};{A_F}")
-                                Inc_output.append(f"{Integral2Decimal(A)}")
-                                
-                        else:
-                            A_D = int(A_D) % Inc_Mod
-
-                            if A.negative == True and A.S != "00;00":
-                                A = Sexagesimal(f"-{A_D};{A_F}")
-                                if Inc_Mod > 60:
-                                    Inc_output.append(f"-{Integral2Decimal(A)}")
-                                else:
-                                    Inc_output.append(f"-{A.S}")
-                            else:
-                                A = Sexagesimal(f"{A_D};{A_F}")
-                                if Inc_Mod > 60:
-                                    Inc_output.append(f"{Integral2Decimal(A)}")
-                                else:
-                                    Inc_output.append(f"{A.S}")
-
-                        
-                        i += 1
-                else:
-                    Inc_output = "Invalid Input"
-
-                if Inc_Mod == 0:
-                    Inc_Mod = ''
-            else:
-                Inc_output = "Invalid Input"
+            Inc_output = f"Invalid Input"# - {e}"
+            print(Inc_output)
 
 
     try:
