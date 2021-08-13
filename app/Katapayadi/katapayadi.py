@@ -41,9 +41,14 @@ def Encoder():
 
     if form.validate_on_submit():
 
-        data = str(form.Input.data)
-        options = str(form.Options.data)
+        data = str(form.Input.data).strip()
+        options = str(form.Options.data).strip()
         Database = get_db()
+
+        if len(data) == 1:
+            label_words, words = Katapayadi_Encoder(data, options, Database)
+            print(label_words)
+            return render_template('katapayadi-encoder.html', form=form, label_words=label_words, words=words, title='Katapayadi', scroll='encoder')
 
         N_Words_lable, N_Words, R_Words_lable, R_Words, N_Sentences_Dict, R_Sentences_Dict = Katapayadi_Encoder(data, options, Database)
         N_Sentences_Dict_Keys, N_Sentences_Dict_Values = list(N_Sentences_Dict.keys()), list(N_Sentences_Dict.values())

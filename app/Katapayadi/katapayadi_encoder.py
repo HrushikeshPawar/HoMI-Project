@@ -257,6 +257,27 @@ def printAll(Number, options, N_Words, R_Words, N_Sentences, R_Sentences):
 
     return (N_Words_lable, N_Words, R_Words_lable, R_Words, N_Sentences_Dict, R_Sentences_Dict) #result
 
+def Single_Digit_Encoder(Number, Options):
+    Words = []
+    scheme_map = SchemeMap(SCHEMES[sanscript.SLP1], SCHEMES[sanscript.DEVANAGARI])
+
+    for i in range(7):
+      n = '0'*i + str(Number)
+      options = get_options(n)
+
+      for option in options:
+        Words.append(transliterate(option[1], scheme_map=scheme_map))
+      
+    if len(Words) > Options:
+      label = (f'''The Database has a total of {len(Words)} word encodings for {Number}.''', 
+      f'''Showing {Options} random selected words.''')
+      Words = sample(Words, k=Options)
+    else:
+      label = (f'''<p>The Database has only {len(Words)} word encodings for {Number}.''', 
+      f'''Showing all available words.</p>''')
+    
+    return label, Words
+
 def Katapayadi_Encoder(Number, options, Database):
     if options == "":
         options = 5
@@ -266,6 +287,9 @@ def Katapayadi_Encoder(Number, options, Database):
     options = int(options)
     Number_of_words = options
     Number_of_sentences = options
+
+    if len(str(int(Number))) == 1:
+      return Single_Digit_Encoder(Number, options)
 
     N_Words, N_Sentences = print_Normal(Number,Number_of_words,Number_of_sentences)
     R_Words, R_Sentences = print_Reversed(Number,Number_of_words,Number_of_sentences)
