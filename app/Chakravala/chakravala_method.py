@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from .forms import ChakravalaForm
-from .Chakravala import chakravala, samasabhavana
+from .Chakravala import chakravala, chakravala_with_Bhramhaguptas_shortcut, LagrangeMethod
 from math import sqrt
 
 Chakravala = Blueprint('Chakravala', __name__, static_folder='static', template_folder='templates')
@@ -13,57 +13,38 @@ def chakravala_method():
     if form.validate_on_submit():
 
         n = form.Input.data
+        algorithm = form.Algorithm.data
         verbose = form.Verbose.data
 
-        if n>1 and int(sqrt(n))!=sqrt(n) and int(n)==n:
+        try:
+            if n>1 and int(sqrt(n))!=sqrt(n) and int(n)==n:
+
+                if algorithm == '''Lagrange's Method to solve Pell's Equation''':
+                    iteration = LagrangeMethod(n)
+                
+                elif algorithm == '''Chakravala with Bhramhaguta's Shortcuts''':
+                    iteration = chakravala_with_Bhramhaguptas_shortcut(n)
+                
+                else:
+                    iteration = chakravala(n)
+                    
+                error = False
+
+                text = f'''\n We use chakravala to solve for a<sup>2</sup> = {n}b<sup>2</sup> + 1.
+                
+                \n Begin with the general equation a<sup>2</sup> = {n}b<sup>2</sup> + m and apply chakravala till m equals 1.
+                
+                \nFor n = {n}, we need {len(iteration)} iterations to arrive at an answer.
+
+                \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 
+                
+                a = {iteration[-1][0]} and b = {iteration[-1][1]}.
+                '''
+            else:
+                error = True
         
-            iteration = chakravala(n)
-            error = False
-
-            text = f'''\n We use chakravala to solve for a<sup>2</sup> = {n}b<sup>2</sup> + 1.
-            
-            \n Begin with the general equation a<sup>2</sup> = {n}b<sup>2</sup> + m and apply chakravala till m equals 1.
-            
-            \nFor n = {n}, we need {len(iteration)} iterations to arrive at an answer.
-
-            \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 
-            
-            a = {iteration[-1][0]} and b = {iteration[-1][1]}.
-            '''
-
-            """
-            m=int(input("\nEnter the number of solutions needed:"))
-            if m<1:
-                print("Invalid Input")
-            else:  
-                print(f"\n")
-                sol_list=samasabhavana(n,p,q,m)
-
-                i=1
-                for x in sol_list:
-                    print(f"{i}. {x}")
-                    p,q=x
-                    print(f"   Check output {p}**2-({n}*({q}**2))={p**2-(n*(q**2))}\n")
-                    i=i+1    
-            """
-            """
-            elif int(n)!=n and n<=1:
-                #print("\nInvalid input. The input is not an integer and is <=1.")
-                error = True
-            elif int(sqrt(n))==sqrt(n) and n<=1:
-                #print("\nInvalid input. The input is a perfect square and is<=1.")
-                error = True
-            elif int(sqrt(n))==sqrt(n):
-                #print("\nInvalid input. The input is a perfect square.")
-                error = True
-            elif int(n)!=n:
-                #print("\nInvalid input. The input is not an integer.")
-                error = True
-            elif n<=1:
-                #print("\nInvalid input. The input is <=1.")
-                error = True
-            """
-        else:
+        except Exception as e:
+            print(e)
             error = True
 
     

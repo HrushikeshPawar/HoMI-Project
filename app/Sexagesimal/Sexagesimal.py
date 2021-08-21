@@ -1,6 +1,4 @@
 from decimal import *
-import re
-from typing import MutableMapping
 from sympy import Rational
 from math import pow
 
