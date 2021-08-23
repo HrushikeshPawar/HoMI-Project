@@ -21,25 +21,42 @@ def chakravala_method():
 
                 if algorithm == '''Lagrange's Method to solve Pell's Equation''':
                     iteration = LagrangeMethod(n)
+                    text = f'''\n We are using Lagrange's method of continued fractions to solve a<sup>2</sup> = {n}b<sup>2</sup> + 1.
+                    
+                    \nFor n = {n}, we need {len(iteration)} iterations to arrive at an answer.
+
+                    \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 
+                    
+                    a = {iteration[-1][0]} and b = {iteration[-1][1]}
+                    '''
                 
                 elif algorithm == '''Chakravala with Bhramhaguta's Shortcuts''':
                     iteration = chakravala_with_Bhramhaguptas_shortcut(n)
+                    text = f'''\n We are using chakravala with Bhramhaguta's shortcuts to solve a<sup>2</sup> = {n}b<sup>2</sup> + 1.
+                
+                    \n Begin with the general equation a<sup>2</sup> = {n}b<sup>2</sup> + m and apply chakravala till m equals 1 (when the program ends) or m equals -1, 2, -2, 4 or -4 (when we apply shortcuts).
+                    
+                    \nFor n = {n}, we need {len(iteration)} iterations to arrive at an answer.
+
+                    \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 
+                    
+                    a = {iteration[-1][0]} and b = {iteration[-1][1]}
+                    '''
                 
                 else:
                     iteration = chakravala(n)
+                    text = f'''\n We are using chakravala to solve a<sup>2</sup> = {n}b<sup>2</sup> + 1.
+                
+                    \n Begin with the general equation a<sup>2</sup> = {n}b<sup>2</sup> + m and apply chakravala till m equals 1.
+                    
+                    \nFor n = {n}, we need {len(iteration)} iterations to arrive at an answer.
+
+                    \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 
+                    
+                    a = {iteration[-1][0]} and b = {iteration[-1][1]}
+                    '''
                     
                 error = False
-
-                text = f'''\n We use chakravala to solve for a<sup>2</sup> = {n}b<sup>2</sup> + 1.
-                
-                \n Begin with the general equation a<sup>2</sup> = {n}b<sup>2</sup> + m and apply chakravala till m equals 1.
-                
-                \nFor n = {n}, we need {len(iteration)} iterations to arrive at an answer.
-
-                \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 
-                
-                a = {iteration[-1][0]} and b = {iteration[-1][1]}.
-                '''
             else:
                 error = True
         
