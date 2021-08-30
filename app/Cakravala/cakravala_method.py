@@ -21,39 +21,45 @@ def Cakravala_method():
 
                 if algorithm == '''Lagrange's Method to solve Pell's Equation''':
                     iteration = LagrangeMethod(n)
+                    if len(iteration) == 1:
+                        iter = 'iteration'
+                    else:
+                        iter = 'iterations'
                     text = f'''\n We are using **Lagrange's method of continued fractions** to solve a<sup>2</sup> = {n}b<sup>2</sup> + 1.
                     
-                    \nFor n = {n}, we need **{len(iteration)} iterations** to arrive at an answer.
+                    \nFor n = {n}, we need **{len(iteration)} {iter}** to arrive at an answer.
 
-                    \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 
-                    
-                    a = {iteration[-1][0]} and b = {iteration[-1][1]}
+                    \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 is **a = {iteration[-1][0]} and b = {iteration[-1][1]}**
                     '''
                 
                 elif  '''Bhramhaguta's Shortcuts''' in algorithm :
                     iteration = Cakravala_with_Bhramhaguptas_shortcut(n)
+                    if len(iteration) == 1:
+                        iter = 'iteration'
+                    else:
+                        iter = 'iterations'
                     text = f'''\n We are using **Cakravala with Bhramhaguta's shortcuts** to solve a<sup>2</sup> = {n}b<sup>2</sup> + 1.
                 
                     \n Begin with the general equation a<sup>2</sup> = {n}b<sup>2</sup> + m and apply cakravala till m equals 1 (when the program ends) or m equals -1, 2, -2, 4 or -4 (when we apply shortcuts).
                     
-                    \nFor n = {n}, we need **{len(iteration)} iterations** to arrive at an answer.
+                    \nFor n = {n}, we need **{len(iteration)} {iter}** to arrive at an answer.
 
-                    \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 
-                    
-                    a = {iteration[-1][0]} and b = {iteration[-1][1]}
+                    \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 is **a = {iteration[-1][0]} and b = {iteration[-1][1]}**
                     '''
                 
                 else:
                     iteration = cakravala(n)
+                    if len(iteration) == 1:
+                        iter = 'iteration'
+                    else:
+                        iter = 'iterations'
                     text = f'''\n We are using **Cakravala** to solve a<sup>2</sup> = {n}b<sup>2</sup> + 1.
                 
                     \n Begin with the general equation a<sup>2</sup> = {n}b<sup>2</sup> + m and apply cakravala till m equals 1.
                     
-                    \nFor n = {n}, we need **{len(iteration)} iterations** to arrive at an answer.
+                    \nFor n = {n}, we need **{len(iteration)} {iter}** to arrive at an answer.
 
-                    \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 
-                    
-                    a = {iteration[-1][0]} and b = {iteration[-1][1]}
+                    \nThe smallest integer solution for a<sup>2</sup> = {n}b<sup>2</sup> + 1 is **a = {iteration[-1][0]} and b = {iteration[-1][1]}**
                     '''
                     
                 error = False
