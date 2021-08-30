@@ -130,3 +130,7 @@ iframe {
 footer {
     background-color: #efe7d6;
 }
+
+.container {
+    margin-bottom: 2rem !important;
+}
