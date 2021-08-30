@@ -21,6 +21,10 @@ html {
     iframe {
         height : 1200px
     }
+
+    .foot {
+        min-height: 440px !important; 
+    }
 }
 
 

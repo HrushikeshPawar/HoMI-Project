@@ -8,7 +8,7 @@
 
 body {
     background-color: var(--clr-body-background);
-    font-family: Roboto;
+    --font-family: Roboto;
     font-style: normal;
     font-weight: normal;
 }
