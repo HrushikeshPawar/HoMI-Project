@@ -4,7 +4,7 @@ from .Sexagesimal.sexagesimalCalculator import sexagesimal
 from .Katapayadi.katapayadi import katapayadi
 from .Aryabhatan.aryabhatan_system import aryabhatan
 from .Bhutasankhya.Bhutasankhya_system import bhutasankhya
-from .Chakravala.chakravala_method import Chakravala
+from .Cakravala.cakravala_method import Cakravala
 import sqlite3
 import os
 
@@ -14,7 +14,7 @@ app.register_blueprint(sexagesimal, url_prefix='/tools')
 app.register_blueprint(aryabhatan, url_prefix='/tools')
 app.register_blueprint(katapayadi, url_prefix='/tools')
 app.register_blueprint(bhutasankhya, url_prefix='/tools')
-app.register_blueprint(Chakravala, url_prefix='/tools')
+app.register_blueprint(Cakravala, url_prefix='/tools')
 
 app.config['SECRET_KEY'] = 'a54d04a4ce38193acc5407a681df2400'
 
@@ -56,9 +56,9 @@ def aryabhatan_system():
 def bhutasankhya_system():
     return render_template('bhutasankhya.html', title='Bhutasankhya')
 
-@app.route('/chakravala')
-def chakravala_method():
-    return render_template('chakravala.html', title='Chakravala')
+@app.route('/cakravala')
+def cakravala_method():
+    return render_template('cakravala.html', title='Cakravala')
 
 @app.route('/acknowledgement')
 def acknowledgement():

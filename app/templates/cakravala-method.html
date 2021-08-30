@@ -1,12 +1,12 @@
-{% extends 'chakravala.html' %}
+{% extends 'cakravala.html' %}
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 {% endblock css %}
 {% block tool %}
 <div style="background-color:white;">
-    <h3 id='chakravala'>Chakravala Calculator</h3>
+    <h3 id='chakravala'>Cakravala Calculator</h3>
     <div class="form-container">
-        <form action="/tools/chakravala-calculator" method="post">
+        <form action="/tools/cakravala-calculator" method="post">
             {{ form.hidden_tag() }}
 
             {{ form.Input.label }} {{ form.Input }} <br>
