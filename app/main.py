@@ -60,5 +60,10 @@ def bhutasankhya_system():
 def chakravala_method():
     return render_template('chakravala.html', title='Chakravala')
 
+@app.route('/acknowledgement')
+def acknowledgement():
+    return render_template('acknowledgement.html', title='Acknowledgement')
+
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock css %}
+{% block content %}
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                Acknowledgement
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                   <p>
+                    These projects have been funded by R&D, IIT Gandhinagar for which we are very grateful. We thank the creators of the following python libraries who made them available on Github:</p>
+                    <ul>
+                        <li><a href='https://github.com/indic-transliteration/indic_transliteration_py'>Indic Transliteration</a></li>
+                        <li><a href='https://pypi.org/project/indicsyllabifier/'>Indicsyllabifier</a></li>
+                        <li><a href='https://github.com/kmadathil/sanskrit_parser'>Sanskrit Parser</a></li>
+                    </ul>
+                    and the consulted databases:
+                    <ul>
+                        <li><a href='https://www.sanskrit-lexicon.uni-koeln.de/'>Cologne Digital Sanskrit Dictionaries
+                        </a></li>
+                        <li><a href='http://www.sanskrit-linguistics.org/dcs/'>Digital Corpus of Sanskrit
+                        </a></li>
+                    </ul>
+                    <p>Our regards are also due to the advisors Prof. Michel Danino, Prof. Indranath Sengupta, Prof. Atul Dixit, and Prof. Sudipta Sarkar for their constant support and feedback. 
+                   </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
