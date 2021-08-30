@@ -231,7 +231,7 @@ def bhutasankhya_decoder(word,database, scheme):
         breakup = []
         for split in splits:
             llist.append(split.split)
-
+        print(llist)
         scheme_map = SchemeMap(SCHEMES[sanscript.SLP1], SCHEMES[sanscript.DEVANAGARI])
         for i in range(len(llist)):
             string = []
@@ -247,6 +247,8 @@ def bhutasankhya_decoder(word,database, scheme):
 
             if count==len(llist[i]):
                 return string, breakup, True, get_transliteration(word, scheme_map)
+            else:
+                breakup = []
         
         return string, breakup, False, get_transliteration(word, scheme_map)
     
