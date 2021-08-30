@@ -13,5 +13,5 @@ class AryabhatanDecoder(FlaskForm):
 class AryabhatanEncoder(FlaskForm):
 
     Input = IntegerField('Number', validators=[InputRequired('Input Required')])
-    Options = IntegerField('No.of Options', validators=[InputRequired('Input Required')])
+    Options = IntegerField('Options', validators=[InputRequired('Input Required')])
     Submit = SubmitField('Submit')
