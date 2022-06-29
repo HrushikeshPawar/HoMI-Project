@@ -26,7 +26,7 @@ MarkupSafe==2.0.1
 misaka==2.1.1
 mpmath==1.2.1
 networkx==2.5.1
-numpy==1.21.0
+numpy==1.22.0
 pandas==1.3.0
 pycparser==2.20
 pydot==1.4.2
